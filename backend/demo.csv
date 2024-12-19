@@ -1,0 +1,11 @@
+product_id,name,description,price,category,brand,stock_quantity
+1,"Drill Machine","High-power drill machine suitable for heavy-duty operations",2500.00,"Tools","Bosch",50
+2,"Angle Grinder","Durable angle grinder with adjustable speed settings",3000.00,"Tools","Makita",30
+3,"Welding Machine","Portable welding machine with precision control",8000.00,"Machinery","ESAB",15
+4,"Cutting Blade","Industrial-grade cutting blade for metal and wood",1200.00,"Accessories","Stanley",100
+5,"Hydraulic Jack","Heavy-duty hydraulic jack with a 10-ton capacity",5000.00,"Automotive Tools","HydroLift",20
+6,"Safety Helmet","Premium safety helmet with shock absorption and ventilation",800.00,"Safety Equipment","3M",200
+7,"Industrial Gloves","Heat-resistant industrial gloves for manufacturing applications",500.00,"Safety Equipment","Ansell",300
+8,"Electric Screwdriver","Compact and efficient electric screwdriver with multiple bits",1500.00,"Tools","Black+Decker",40
+9,"Air Compressor","Portable air compressor with a 5-liter tank capacity",12000.00,"Machinery","Ingersoll Rand",10
+10,"Lifting Chain","Heavy-duty lifting chain for industrial use",4500.00,"Material Handling","Kito",25
