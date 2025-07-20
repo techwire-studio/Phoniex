@@ -17,10 +17,16 @@ export const getProducts = async () => {
 // Function to create a new product
 export const createProduct = async (productData) => {
   try {
-    const response = await axios.post(API_URL, productData);
+    const response = await axios.post(API_URL, productData, {
+      headers: { "Content-Type": "application/json" },
+    });
     return response.data;
   } catch (error) {
-    console.error("Error creating product:", error);
+    console.error("Error creating product:", error.response ? error.response.data : error.message);
     throw error;
   }
 };
+
+
+
+

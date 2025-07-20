@@ -18,13 +18,13 @@ const Collection = () => {
   ];
 
   return (
-    <div className="mt-20">
+    <div className="mt-10 lg:mt-20">
       <div className="text-center">
         <motion.h1
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="font-rubik font-medium text-[28px] text-home-bg-black"
+          className="font-rubik font-medium lg:text-h2-desktop text-h2-mobile text-home-bg-black"
         >
           DISCOVER NOW
         </motion.h1>
@@ -32,7 +32,7 @@ const Collection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="font-tomorrow font-bold text-[48px] text-home-bg-black"
+          className="font-tomorrow font-bold lg:text-h1-desktop text-h1-mobile text-home-bg-black"
         >
           COLLECTIONS
         </motion.h1>
@@ -45,7 +45,7 @@ const Collection = () => {
           className="mySwiper"
           onSwiper={(swiper) => {
             // Update progress bar width
-            const progressBar = document.getElementById("custom-progress-bar");
+            const progressBar = document.getElementById("custom-progress-bar3");
             swiper.on("slideChange", () => {
               const progress =
                 (swiper.activeIndex /
@@ -56,10 +56,10 @@ const Collection = () => {
             });
           }}
           breakpoints={{
-            640: {
-              slidesPerView: 1.5,
+            0: {
+              slidesPerView: 2,
             },
-            768: {
+            640: {
               slidesPerView: 2.5,
             },
             1024: {
@@ -82,7 +82,7 @@ const Collection = () => {
                   alt={`Slide ${index}`}
                   className="object-cover w-full"
                 />
-                <h1 className="text-center font-rubik font-medium text-[18px] mt-8 text-home-bg-black">
+                <h1 className="text-center font-rubik font-medium text-body-mobile lg:text-body-desktop mt-8 text-home-bg-black">
                   {collection.title}
                 </h1>
               </motion.div>
@@ -91,10 +91,10 @@ const Collection = () => {
         </Swiper>
       </div>
       {/* Custom Progress Bar */}
-      <div className="flex justify-center mt-16">
-        <div className="w-[500px] h-2 bg-gray-200 rounded-full overflow-hidden">
+      <div className="flex justify-center mt-8 lg:mt-16">
+        <div className="w-3/5 lg:w-[500px] h-1 lg:h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            id="custom-progress-bar"
+            id="custom-progress-bar3"
             className="h-full bg-black transition-all duration-300 ease-in-out"
             style={{ width: "0%" }}
           ></div>
