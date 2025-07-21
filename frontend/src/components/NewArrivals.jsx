@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { motion } from "framer-motion";
 import { CartContext } from "../context/CartContext";
+import stars from "../assets/Group 628218.png"
 
 const NewArrivals = () => {
   const [collections, setCollections] = useState([]);
@@ -112,20 +113,23 @@ const NewArrivals = () => {
 
                     {/* Rating */}
                     <div className="mt-1 lg:mt-2 flex items-center gap-4">
-                      <p className="font-light text-subtext-mobile lg:text-subtext-desktop mt-1">
+                      {/* <p className="font-light text-subtext-mobile lg:text-subtext-desktop mt-1">
                         {collection.rating || "4.5 ★"}
-                      </p>
+                      </p> */}
+                      <img className="w-24 h-4" src={stars} alt="" />
+                      <p className="text-[#808080] font-light">2000</p>
                     </div>
 
                     {/* Price */}
-                    <div className="mt-1 lg:mt-4 space-x-4">
-                      <p>
-                        <span className="line-through text-sub-text-best text-subtext-mobile lg:text-subtext-mobile">
-                          ₹{collection.price || "999"}
-                        </span>
-                        <span className="ml-2 text-body-mobile lg:text-body-desktop text-black">
+                    <div className="mt-1 lg:mt-4 mb-2 space-x-4">
+                      <p className="space-x-2">
+                        <span className="line-through font-light text-body-mobile lg:text-subtext-desktop  text-sub-text-best">
                           ₹{collection.actualprice || "499"}
                         </span>
+                        <span className="  text-h4-mobile lg:text-h4-mobile font-medium   text-black">
+                          ₹{collection.price || "999"}
+                        </span>
+                        
                       </p>
                     </div>
                   </div>

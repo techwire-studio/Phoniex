@@ -23,6 +23,8 @@ import dropdown from "../assets/dropdown.svg";
 import plus from "../assets/plus.png";
 import minus from "../assets/minus.png";
 import pen from "../assets/pen.png";
+import truck from "../assets/mage_delivery-truck.png";
+import ticket from "../assets/f7_tickets.png";
 import shooping from "../assets/shopping-outline.png";
 import coupon from "../assets/coupon.png";
 import delivery from "../assets/delivery2.png";
@@ -66,7 +68,7 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  const  userIsAuthenticated  = true;
+  const userIsAuthenticated = true;
 
   // Row rendering function for react-window
   const Row = ({ index, style }) => {
@@ -170,35 +172,35 @@ const Header = () => {
 
   // Save Address to local storage
   const handleAddressSave = () => {
-  const formData = {
-    city,
-    state,
-    address,
-    email,
-    fullName,
-    phoneNumber,
+    const formData = {
+      city,
+      state,
+      address,
+      email,
+      fullName,
+      phoneNumber,
+    };
+
+    const existingAddresses =
+      JSON.parse(localStorage.getItem("addresses")) || [];
+
+    existingAddresses.push(formData);
+
+    localStorage.setItem("addresses", JSON.stringify(existingAddresses));
+    setSavedAddress(existingAddresses);
+
+    // ✅ Clear input states
+    setCity("");
+    setState("");
+    setAddress("");
+    setEmail("");
+    setFullName("");
+    setPhoneNumber("");
+
+    // ✅ Close only the inner modals, NOT the checkout modal
+    setDeliveryForm(false); // close the delivery modal
+    setPinCodeForm(false); // close the pincode modal
   };
-
-  const existingAddresses = JSON.parse(localStorage.getItem("addresses")) || [];
-
-  existingAddresses.push(formData);
-
-  localStorage.setItem("addresses", JSON.stringify(existingAddresses));
-  setSavedAddress(existingAddresses);
-
-  // ✅ Clear input states
-  setCity("");
-  setState("");
-  setAddress("");
-  setEmail("");
-  setFullName("");
-  setPhoneNumber("");
-
-  // ✅ Close only the inner modals, NOT the checkout modal
-  setDeliveryForm(false); // close the delivery modal
-  setPinCodeForm(false);  // close the pincode modal
-};
-
 
   // Log the state changes after the render
   useEffect(() => {
@@ -454,44 +456,70 @@ const Header = () => {
                 />
               </div>
               <div className="px-0">
-                <List
-                  height={
-                    window.innerWidth < 768
-                      ? window.innerHeight - 300 // mobile height
-                      : window.innerHeight - 240 // desktop height
-                  } // Adjust for header and footer height
-                  itemCount={cartItems.length}
-                  itemSize={220} // Adjust based on your item height
-                  width="100%"
-                >
-                  {Row}
-                </List>
+                {cartItems.length === 0 ? (
+                  <div className="text-center mt-10 text-subtext-mobile lg:text-subtext-desktop font-roboto">
+                    <p>Your cart is empty.</p>
+                  </div>
+                ) : (
+                  <List
+                    height={
+                      window.innerWidth < 768
+                        ? window.innerHeight - 230
+                        : window.innerHeight - 240
+                    }
+                    itemCount={cartItems.length}
+                    itemSize={220}
+                    width="100%"
+                  >
+                    {Row}
+                  </List>
+                )}
               </div>
-              {/* Cart Footer */}
-              <div className="flex lg:gap-4 gap-4 mt-2 lg:mt-4">
-                <img className="border-[1px] rounded-[5px] h-10 lg:h-12 w-auto" src={pen} alt="" />
-                <img className="border-[1px] rounded-[5px] h-10 lg:h-12 w-auto" src={pen} alt="" />
-                <img className="border-[1px] rounded-[5px] h-10 lg:h-12 w-auto" src={pen} alt="" />
-              </div>
-              <div className="flex justify-between items-center mt-2">
-                <p className="font-roboto font-semibold lg:text-[24px] text-[20px]">
-                  Sub Total
-                </p>
-                <p>
-                  ₹ {new Intl.NumberFormat("en-IN").format(calculateSubtotal())}
-                </p>
-              </div>
-              
-                <button
-                className="w-full bg-black text-white text-center py-2 font-roboto lg:text-[18px] text-[16px] mt-2"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsCheckOut(true);
-                  }}
-                >
-                  Check Out
-                </button>
-             
+
+              {/* Fixed Cart Footer */}
+              {cartItems.length > 0 && (
+                <div className="absolute bottom-0 left-0 w-full p-4 bg-white">
+                  <div className="flex lg:gap-4 gap-4">
+                    <img
+                      className="border rounded-[5px] h-10 lg:h-12 p-2 w-auto"
+                      src={pen}
+                      alt=""
+                    />
+                    <img
+                      className="border rounded-[5px] h-10 lg:h-12 p-2 w-auto"
+                      src={truck}
+                      alt=""
+                    />
+                    <img
+                      className="border rounded-[5px] h-10 lg:h-12 p-2 w-auto"
+                      src={ticket}
+                      alt=""
+                    />
+                  </div>
+
+                  <div className="flex justify-between items-center mt-2">
+                    <p className="font-roboto font-semibold lg:text-[24px] text-[20px]">
+                      Sub Total
+                    </p>
+                    <p>
+                      ₹{" "}
+                      {new Intl.NumberFormat("en-IN").format(
+                        calculateSubtotal()
+                      )}
+                    </p>
+                  </div>
+
+                  <button
+                    className="w-full bg-black text-white text-center py-2 font-roboto lg:text-[18px] text-[16px] mt-2"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsCheckOut(true);
+                    }}
+                  >
+                    Check Out
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -655,9 +683,9 @@ const Header = () => {
 
                     <div className="relative">
                       {/* Background Overlay */}
-                      {pinCodeForm && (
-                        <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
-                      )}
+                      {/* {pinCodeForm && (
+                        <div className="fixed  bg-black bg-opacity-50 z-40"></div>
+                      )} */}
 
                       {/* Page Content */}
                       <div className={`${pinCodeForm ? "relative z-50" : ""}`}>
@@ -716,7 +744,7 @@ const Header = () => {
 
                     {deliveryForm && (
                       <div className="">
-                        <div className="fixed inset-0 lg:left-[30%] w-full lg:w-1/3 bottom-0 z-50 left-0 border border-black bg-white  py-4 px-2">
+                        <div className="fixed  lg:left-[30%] left-0 h-full w-full lg:w-1/3 bottom-0 z-50  border border-black bg-white  py-4 px-2">
                           <div className="flex">
                             <div className="w-1/2">
                               <p className="font-roboto text-body-mobile lg:text-body-desktop">
@@ -905,7 +933,7 @@ const Header = () => {
                               <div className="w-1/2 flex justify-end">
                                 <button
                                   onClick={() => handleDeleteAddress(index)}
-                                  className="px-4 py-1 text-white font-roboto border bg-red-500 border-black"
+                                  className="px-4 py-1 text-black font-roboto border  border-black"
                                 >
                                   Delete
                                 </button>
@@ -964,7 +992,7 @@ const Header = () => {
                   }`}
                   disabled={!selectedAddress}
                   // onClick={handleProceedPayment}
-                  onClick={()=> navigate("/payment")}
+                  onClick={() => navigate("/payment")}
                 >
                   Proceed To Payment
                 </button>
@@ -1869,9 +1897,17 @@ const Header = () => {
                 e.preventDefault();
                 setIsCartOpen(true);
               }}
+              className="relative"
             >
-              <img className="w-6" src={cart} alt="" />
+              <img className="w-6" src={cart} alt="Cart" />
+
+              {cartItems.length > 0 && (
+                <span className="absolute -top-3 bg-red-500 px-2 py-0 -right-4 text-white text-[10px] font-bold rounded-full lg:text-[16px]">
+                  {cartItems.length}
+                </span>
+              )}
             </button>
+
             {/* <Cart 
             isCartOpen={isCartOpen}
             setIsCartOpen={setIsCartOpen}
@@ -1908,15 +1944,30 @@ const Header = () => {
           {/* <a href="">
             <img className="w-6 h-6" src={user} alt="" />
           </a> */}
-          <a
+          {/* <button
             onClick={(e) => {
               e.preventDefault();
               setIsCartOpen(true);
             }}
-            href=""
+            
           >
             <img className="w-6 h-6" src={cart} alt="" />
-          </a>
+          </button> */}
+          <button
+              onClick={(e) => {
+                e.preventDefault();
+                setIsCartOpen(true);
+              }}
+              className="relative"
+            >
+              <img className="w-6" src={cart} alt="Cart" />
+
+              {cartItems.length > 0 && (
+                <span className="absolute -top-3 bg-red-500 px-2 py-0 -right-4 text-white text-[16px] font-bold rounded-full ">
+                  {cartItems.length}
+                </span>
+              )}
+            </button>
         </div>
       </div>
     </div>

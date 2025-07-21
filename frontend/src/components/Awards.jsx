@@ -48,6 +48,9 @@ const Awards = () => {
             Choose us for unmatched quality backed by trust and industry
             acclaim.
           </p>
+          <button className="lg:hidden bg-[#282929] text-white font-rubik px-6 py-2 mt-4 text-[14px]">
+          Learn More
+        </button>
         </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -67,6 +70,10 @@ const Awards = () => {
           </div>
          
         </motion.div>
+        <button className="hidden lg:block bg-[#282929] text-white font-rubik px-6 py-2 mt-4 text-[16px]">
+          Learn More
+        </button>
+        
       </motion.div>
     </motion.div>
   );
