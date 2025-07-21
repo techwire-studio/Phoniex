@@ -1,12 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const [cartInitialized, setCartInitialized] = useState(false); // ✅
+  const [cartInitialized, setCartInitialized] = useState(false);
 
-  // ✅ Load from localStorage only once on mount
+  // Load from localStorage only once on mount
   useEffect(() => {
     const stored = localStorage.getItem("cart");
     if (stored) {
@@ -19,10 +19,10 @@ export const CartProvider = ({ children }) => {
         console.error("Failed to parse cart:", err);
       }
     }
-    setCartInitialized(true); // ✅ Now cart is initialized
+    setCartInitialized(true);
   }, []);
 
-  // ✅ Save only after initialization
+  // Save only after initialization
   useEffect(() => {
     if (cartInitialized) {
       localStorage.setItem("cart", JSON.stringify(cartItems));
@@ -87,4 +87,13 @@ export const CartProvider = ({ children }) => {
       {children}
     </CartContext.Provider>
   );
+};
+
+// Add this custom hook
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+  return context;
 };

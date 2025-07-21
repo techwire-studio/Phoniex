@@ -18,7 +18,7 @@ const BestSellers = () => {
     const fetchCollections = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5002/api/products/all-products?limit=6"
+          "http://localhost:5000/api/products/all-products?limit=6"
         );
         const data = await res.json();
 
@@ -38,7 +38,7 @@ const BestSellers = () => {
   useEffect(() => {
   const fetchTopProduct = async () => {
     try {
-      const res = await fetch("http://localhost:5002/api/products/all-products?limit=1");
+      const res = await fetch("http://localhost:5000/api/products/all-products?limit=1");
       const data = await res.json();
 
       if (Array.isArray(data.products) && data.products.length > 0) {

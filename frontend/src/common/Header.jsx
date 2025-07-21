@@ -14,7 +14,7 @@ import gaming from "../assets/gaming.png";
 import wfh from "../assets/wfh.png";
 import boss from "../assets/boss.png";
 import executive from "../assets/executive.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import menu from "../assets/menu.svg";
 import close from "../assets/close black.svg";
 import arrow from "../assets/down-arrow.svg";
@@ -63,6 +63,8 @@ const Header = () => {
   const [savedPinCode, setSavedPinCode] = useState("");
   const [savedAddress, setSavedAddress] = useState(null);
   const [selectedAddress, setSelectedAddress] = useState(null);
+
+  const navigate = useNavigate();
 
   const  userIsAuthenticated  = true;
 
@@ -962,6 +964,7 @@ const Header = () => {
                   }`}
                   disabled={!selectedAddress}
                   // onClick={handleProceedPayment}
+                  onClick={()=> navigate("/payment")}
                 >
                   Proceed To Payment
                 </button>

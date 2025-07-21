@@ -1,6 +1,7 @@
 import "./App.css";
 import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PaymentPage from "./Pages/PaymentPage.jsx";
 
 // Import Components
 const Home = lazy(() => import("./components/Home"));
@@ -110,6 +111,8 @@ function App() {
           <Route path="/task-chairs" element={<TaskChairs />} />
           {/* New Arrivals */}
           <Route path="/aire-chairs" element={<AireChairs />} />
+          {/*Payment Page */}
+          <Route path="/payment" element={<PaymentPage/>} />
         </Routes>
       </Suspense>
    

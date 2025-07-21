@@ -1,116 +1,99 @@
 import { useEffect, useState } from "react";
-
-
 import { Suspense } from "react";
-
 import { Link } from "react-router-dom";
+import axios from "axios";
 import Bulk from "../../components/Bulk";
 import Footer from "../../components/Footer";
 import star from "../../assets/start.png";
-import { getCategories } from "../../services/categoryService";
-import { getProducts } from "../../services/productService";
 import red from "../../assets/red.png";
 import gray from "../../assets/gray.png";
 import yellow from "../../assets/yellow.png";
 import blue from "../../assets/blue.png";
 import green from "../../assets/green.png";
 import Header from "../../common/Header";
+import { useCart } from "../../context/CartContext";
 
 const ExecutiveProducts = () => {
-  
-
-  const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
-  const [gamingCategory, setGamingCategory] = useState(null);
+  const { addToCart } = useCart();
   const [filteredProducts, setFilteredProducts] = useState([]);
-
-  //   Range
   const [rangeValue, setRangeValue] = useState(0);
-  const minValue = 0; // Fixed minimum value
-  const maxValue = 30000; // Fixed maximum value
-
+  const minValue = 0;
+  const maxValue = 30000;
   const [sortOption, setSortOption] = useState("default");
 
-  const handleSortChange = (event) => {
-    const selectedOption = event.target.value;
-    setSortOption(selectedOption);
-
-    let sortedProducts = [...filteredProducts]; // Create a copy to avoid direct mutation
-
-    switch (selectedOption) {
-      case "priceLowToHigh":
-        sortedProducts.sort((a, b) => a.price - b.price);
-        break;
-      case "priceHighToLow":
-        sortedProducts.sort((a, b) => b.price - a.price);
-        break;
-      case "ratingHighToLow":
-        sortedProducts.sort((a, b) => b.rating - a.rating);
-        break;
-      case "ratingLowToHigh":
-        sortedProducts.sort((a, b) => a.rating - b.rating);
-        break;
-      case "newestFirst":
-        sortedProducts.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
-        break;
-      default:
-        break;
-    }
-
-    setFilteredProducts(sortedProducts);
-  };
-
+  // Fetch products dynamically
   useEffect(() => {
-    const fetchProductsAndCategories = async () => {
+    const fetchProducts = async () => {
       try {
-        const fetchedCategories = await getCategories();
-        const fetchedProducts = await getProducts();
-        setCategories(fetchedCategories);
-        setProducts(fetchedProducts);
-        console.log(fetchedProducts);
+        const response = await axios.get(
+          "http://localhost:5000/api/products/all-products",
+          {
+            params: { page: 1, limit: 100 }, // Adjust limit as needed
+          }
+        );
+        const filteredProducts = response.data.products;
+        setFilteredProducts(filteredProducts);
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching products:", error);
       }
     };
-    fetchProductsAndCategories();
+
+    fetchProducts();
   }, []);
 
-  //  For filter
+  // Sort products
   useEffect(() => {
-    if (categories.length > 0 && products.length > 0) {
-      const gamingCategory = categories.find(
-        (category) => category.name.toLowerCase() === "executive"
-      );
-      setGamingCategory(gamingCategory);
+    const sortProducts = () => {
+      const sorted = [...filteredProducts];
 
-      if (gamingCategory) {
-        const filtered = products.filter(
-          (product) => product.categoryId === gamingCategory.id
-        );
-        setFilteredProducts(filtered);
+      switch (sortOption) {
+        case "priceLowToHigh":
+          sorted.sort((a, b) => Number(a.price) - Number(b.price));
+          break;
+        case "priceHighToLow":
+          sorted.sort((a, b) => Number(b.price) - Number(a.price));
+          break;
+        case "ratingHighToLow":
+          sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+          break;
+        case "ratingLowToHigh":
+          sorted.sort((a, b) => (a.rating || 0) - (b.rating || 0));
+          break;
+        case "newestFirst":
+          sorted.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
+          break;
+        default:
+          return sorted;
       }
-    }
-  }, [categories, products]);
+      return sorted;
+    };
 
- 
-  
+    if (filteredProducts.length > 0) {
+      const sortedProducts = sortProducts();
+      setFilteredProducts(sortedProducts);
+    }
+  }, [sortOption, filteredProducts.length]);
+
+  const handleSortChange = (event) => {
+    setSortOption(event.target.value);
+  };
 
   return (
     <div className="w-full h-screen">
       <Header />
-
-      <div className="w-full px-16  h-fit flex pt-20">
-        <div className="w-1/5 h-fit ">
+      <div className="w-full px-16 h-fit flex pt-20">
+        <div className="w-1/5 h-fit">
           <h1 className="font-rubik text-home-bg-black">
-            Collections / <span className="text-text-light-gray">Executive Chairs</span>
+            Collections /{" "}
+            <span className="text-text-light-gray">Executive Chairs</span>
           </h1>
           <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">
             Filter by Price
           </h1>
           <input
-            className="mt-4 "
+            className="mt-4"
             type="range"
             min={minValue}
             max={maxValue}
@@ -123,20 +106,20 @@ const ExecutiveProducts = () => {
           </p>
           <p className="mt-4 font-rubik text-[24px]">Color</p>
           <div className="flex gap-2 mt-4">
-            <img className="w-8 h-8" src={red} alt="" />
-            <img className="w-8 h-8" src={gray} alt="" />
-            <img className="w-8 h-8" src={yellow} alt="" />
-            <img className="w-8 h-8" src={green} alt="" />
-            <img className="w-8 h-8" src={blue} alt="" />
+            <img className="w-8 h-8" src={red} alt="Red" />
+            <img className="w-8 h-8" src={gray} alt="Gray" />
+            <img className="w-8 h-8" src={yellow} alt="Yellow" />
+            <img className="w-8 h-8" src={green} alt="Green" />
+            <img className="w-8 h-8" src={blue} alt="Blue" />
           </div>
         </div>
-        <div className="w-4/5 h-fit ">
+        <div className="w-4/5 h-fit">
           <div className="py-0">
             <select
               id="sortBy"
               value={sortOption}
               onChange={handleSortChange}
-              className=" w-28 px-4 py-2  text-text-light-gray bg-drop-white"
+              className="w-28 px-4 py-2 text-text-light-gray bg-drop-white"
             >
               <option value="default">Sort By</option>
               <option value="priceLowToHigh">Price: Low to High</option>
@@ -150,16 +133,19 @@ const ExecutiveProducts = () => {
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className="w-full  py-4  flex flex-col justify-between h-full"
+                className="w-full py-4 flex flex-col justify-between h-full"
               >
                 <div>
                   <Link to={`/product/${product.id}`}>
-                    <img src={product.images[0]} alt="" />
+                    <img
+                      src={product.imageUrls?.[0] || "https://via.placeholder.com/150"}
+                      alt={product.title}
+                    />
                   </Link>
                 </div>
-                <div className=" flex m-auto flex-col  mx-8 text-left pr-0 mt-4 font-rubik font-medium">
+                <div className="flex m-auto flex-col mx-8 text-left pr-0 mt-4 font-rubik font-medium">
                   <div>
-                    <p>{product.description}</p>
+                    <p>{product.title}</p>
                   </div>
                   <div className="mt-2 flex items-center gap-2">
                     <img className="w-20 h-4" src={star} alt="Rating Stars" />
@@ -167,29 +153,32 @@ const ExecutiveProducts = () => {
                       2000
                     </p>
                   </div>
-
                   <div className="mt-4 font-rubik">
                     <p className="text-[16px] space-x-2">
-                      <span className="line-through text-sub-text-best  text-[10px]">
-                        ₹ 19,999.00
+                      <span className="line-through text-sub-text-best text-[10px]">
+                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price) + 500)}.00
                       </span>
-                      <span className=" text-black">
-                        ₹{new Intl.NumberFormat("en-IN").format(product.price)}
-                        .00
+                      <span className="text-black">
+                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price))}.00
                       </span>
                     </p>
                   </div>
                 </div>
-                {/* -----------------Div-1-4-------------------- */}
-                <div className="font-rubik flex  border-2 border-home-bg-black w-fit m-auto px-8 py-4 mt-4 text-home-bg-black font-medium">
-                  <button>ADD TO CART</button>
+                <div className="font-rubik flex border-2 border-home-bg-black w-fit m-auto px-8 py-4 mt-4 text-home-bg-black font-medium">
+                  <button
+                    onClick={() => {
+                      addToCart(product);
+                      alert(`${product.title} has been added to the cart!`);
+                    }}
+                  >
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-
       <Suspense>
         <Bulk />
         <Footer />
