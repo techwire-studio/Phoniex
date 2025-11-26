@@ -29,12 +29,9 @@ const BossProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/products/all-products",
-          {
-            params: { page: 1, limit: 100 }, // Adjust limit as needed
-          }
-        );
+        const response = await axios.get("http://localhost:5000/api/products/all-products", {
+          params: { page: 1, limit: 100 } // Adjust limit as needed
+        });
         const filteredProducts = response.data.products;
         setBossProducts(filteredProducts);
       } catch (error) {
@@ -64,9 +61,7 @@ const BossProducts = () => {
           sorted.sort((a, b) => (a.rating || 0) - (b.rating || 0));
           break;
         case "newestFirst":
-          sorted.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-          );
+          sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
           break;
         default:
           return sorted;
@@ -105,12 +100,9 @@ const BossProducts = () => {
       <div className="w-full px-8 lg:px-16 h-fit flex flex-col lg:flex-row pt-10 lg:pt-20">
         <div className="hidden lg:block w-full lg:w-1/5 h-fit">
           <h1 className="font-rubik text-home-bg-black">
-            Collections /{" "}
-            <span className="text-text-light-gray">Boss Chairs</span>
+            Collections / <span className="text-text-light-gray">Boss Chairs</span>
           </h1>
-          <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">
-            Filter by Price
-          </h1>
+          <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">Filter by Price</h1>
           <input
             className="mt-4"
             type="range"
@@ -227,16 +219,13 @@ const BossProducts = () => {
                             "Price: High to Low",
                             "Rating: High to Low",
                             "Rating: Low to High",
-                            "Newest First",
+                            "Newest First"
                           ].map((option, index) => (
                             <li
                               key={index}
                               onClick={() => {
                                 setSortOption(
-                                  option
-                                    .toLowerCase()
-                                    .replace(/: /g, "")
-                                    .replace(/ /g, "")
+                                  option.toLowerCase().replace(/: /g, "").replace(/ /g, "")
                                 );
                                 setIsSortBy(false);
                               }}
@@ -267,10 +256,7 @@ const BossProducts = () => {
 
           <div className="w-full grid grid-cols-2 lg:grid-cols-3 mt-4 gap-4">
             {bossProducts.map((product) => (
-              <div
-                key={product.id}
-                className="w-full py-4 flex flex-col justify-between h-full"
-              >
+              <div key={product.id} className="w-full py-4 flex flex-col justify-between h-full">
                 <div>
                   <Link to={`/product/${product.id}`}>
                     <img
@@ -281,9 +267,7 @@ const BossProducts = () => {
                 </div>
                 <div className="flex m-auto flex-col mx-0 lg:mx-8 text-left pr-0 mt-4 font-rubik font-medium">
                   <div>
-                    <p className="text-subtext-mobile lg:text-subtext-desktop">
-                      {product.title}
-                    </p>
+                    <p className="text-subtext-mobile lg:text-subtext-desktop">{product.title}</p>
                   </div>
                   <div className="mt-2 flex items-center gap-2">
                     <img className="w-24 h-4" src={star} alt="Rating Stars" />
@@ -294,10 +278,12 @@ const BossProducts = () => {
                   <div className="mt-4 font-rubik">
                     <p className="space-x-2 font-rubik">
                       <span className="text-[10px] line-through text-sub-text-best">
-                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price) + 500)}.00
+                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price) + 500)}
+                        .00
                       </span>
                       <span className="text-black text-body-mobile lg:text-body-desktop">
-                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price))}.00
+                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price))}
+                        .00
                       </span>
                     </p>
                   </div>

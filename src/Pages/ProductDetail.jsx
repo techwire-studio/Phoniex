@@ -27,9 +27,7 @@ const ProductDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchedProduct = products.find(
-      (product) => String(product.id) === id
-    );
+    const fetchedProduct = products.find((product) => String(product.id) === id);
     setProductDetail(fetchedProduct);
   }, []);
 
@@ -88,7 +86,7 @@ const ProductDetail = () => {
     productDetail.image1,
     productDetail.image2,
     productDetail.image3,
-    productDetail.image4,
+    productDetail.image4
   ];
 
   return (
@@ -115,9 +113,7 @@ const ProductDetail = () => {
                 src={image}
                 alt={`Product view ${index + 1}`}
                 className={`h-[80px] lg:h-[100px] w-auto object-contain cursor-pointer transition-all duration-200 ${
-                  mainImage === image
-                    ? "border-2 border-blue-500"
-                    : "opacity-70 hover:opacity-100"
+                  mainImage === image ? "border-2 border-blue-500" : "opacity-70 hover:opacity-100"
                 }`}
                 onClick={() => setMainImage(image)}
               />
@@ -152,9 +148,7 @@ const ProductDetail = () => {
                     (65% OFF)
                   </span>
                 </p>
-                <p className="font-rubik text-tax-text text-[12px] ">
-                  Inclusive of all taxes
-                </p>
+                <p className="font-rubik text-tax-text text-[12px] ">Inclusive of all taxes</p>
               </div>
             )}
           </div>
@@ -162,9 +156,7 @@ const ProductDetail = () => {
           <div className="mt-4">
             <div className="hidden lg:block">
               <div>
-                <p className="font-rubik text-quantity-text font-light text-[18px]">
-                  Quantity
-                </p>
+                <p className="font-rubik text-quantity-text font-light text-[18px]">Quantity</p>
               </div>
 
               {/* Items */}
@@ -249,7 +241,7 @@ const ProductDetail = () => {
             <div className="mt-8">
               <h1 className="flex items-center gap-4 font-rubik font-medium lg:text-h4-desktop text-h4-mobile text-home-bg-black">
                 {" "}
-                <img className="w-4 h-6" src={direction} alt="" /> 
+                <img className="w-4 h-6" src={direction} alt="" />
                 Check for Delivery Details
               </h1>
               <div className="relative mt-4">
@@ -273,8 +265,7 @@ const ProductDetail = () => {
                 </button>
               </div>
               <p className="text-tax-text text-[9px] lg:text-subtext-desktop">
-                Please enter PIN code to check delivery time & Pay on Delivery
-                Availability
+                Please enter PIN code to check delivery time & Pay on Delivery Availability
               </p>
               {isCheckPin && (
                 <div className="mt-2 space-y-4">

@@ -1,16 +1,15 @@
-
-import Header from '../../../common/Header'
-import Bulk from '../../../components/Bulk'
-import Footer from '../../../components/Footer'
+import Header from "../../../common/Header";
+import Bulk from "../../../components/Bulk";
+import Footer from "../../../components/Footer";
 
 const LumbarPillow = () => {
   return (
     <div>
-      <Header/>
+      <Header />
       <Bulk />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default LumbarPillow
+export default LumbarPillow;

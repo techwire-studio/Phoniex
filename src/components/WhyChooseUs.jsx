@@ -19,8 +19,7 @@ const WhyChooseUs = () => {
           FREE SHIPPING
         </p>
         <p className="w-4/5 text-center font-rubik font-light text-black text-subtext-mobile lg:text-subtext-desktop mt-4">
-          Free worldwide shipping and returns - customs and duties taxes
-          included
+          Free worldwide shipping and returns - customs and duties taxes included
         </p>
       </motion.div>
 

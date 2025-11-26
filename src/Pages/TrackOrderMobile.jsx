@@ -15,23 +15,19 @@ const TrackOrderMobile = () => {
         <div className="w-full py-4 flex">
           <div
             className={`w-1/2 text-center cursor-pointer ${
-                activeTab === 'order' ? "border-b-4 border-b-black pb-2" : ""
+              activeTab === "order" ? "border-b-4 border-b-black pb-2" : ""
             }`}
             onClick={() => setActiveTab("order")}
           >
-            <p className="text-h4-mobile font-rubik text-auth-bg">
-              Order Number
-            </p>
+            <p className="text-h4-mobile font-rubik text-auth-bg">Order Number</p>
           </div>
           <div
             className={`w-1/2 text-center cursor-pointer ${
-                activeTab === 'tracking' ? "border-b-4 border-b-black pb-2" : ""
+              activeTab === "tracking" ? "border-b-4 border-b-black pb-2" : ""
             }`}
             onClick={() => setActiveTab("tracking")}
           >
-            <p className="text-h4-mobile font-rubik text-auth-bg">
-              Tracking Number
-            </p>
+            <p className="text-h4-mobile font-rubik text-auth-bg">Tracking Number</p>
           </div>
         </div>
 
@@ -42,22 +38,22 @@ const TrackOrderMobile = () => {
               {/* Content for Order Number */}
               <form className="font-rubik text-h4-mobile" action="">
                 <label className="w-full space-y-2" htmlFor="">
-                    <p>Order Number</p>
-                    <input
-                     type="text"
-                     className="w-full py-3 border pl-4 border-black placeholder:font-rubik placeholder:text-auth-bg"
-                     />
+                  <p>Order Number</p>
+                  <input
+                    type="text"
+                    className="w-full py-3 border pl-4 border-black placeholder:font-rubik placeholder:text-auth-bg"
+                  />
                 </label>
                 <label className="w-full space-y-2" htmlFor="">
-                    <p className="mt-4">Email or Phone Number</p>
-                    <input
-                     type="text"
-                     className="w-full py-3 border pl-4 border-black placeholder:font-rubik placeholder:text-auth-bg"
-                     />
+                  <p className="mt-4">Email or Phone Number</p>
+                  <input
+                    type="text"
+                    className="w-full py-3 border pl-4 border-black placeholder:font-rubik placeholder:text-auth-bg"
+                  />
                 </label>
 
                 <button className="w-full bg-home-bg-black py-3 text-white mt-8 font-rubik">
-                    Track
+                  Track
                 </button>
               </form>
             </div>
@@ -67,16 +63,15 @@ const TrackOrderMobile = () => {
               {/* Content for Tracking Number */}
               <form className="font-rubik text-h4-mobile" action="">
                 <label className="w-full space-y-2" htmlFor="">
-                    <p>Tracking Number</p>
-                    <input
-                     type="text"
-                     className="w-full py-3 border pl-4 border-black placeholder:font-rubik placeholder:text-auth-bg"
-                     />
+                  <p>Tracking Number</p>
+                  <input
+                    type="text"
+                    className="w-full py-3 border pl-4 border-black placeholder:font-rubik placeholder:text-auth-bg"
+                  />
                 </label>
-                
 
                 <button className="w-full bg-home-bg-black py-3 text-white mt-8 font-rubik">
-                    Track
+                  Track
                 </button>
               </form>
             </div>

@@ -15,14 +15,12 @@ const BestSellers = () => {
   const [collections, setCollections] = useState([]);
   const [topProduct, setTopProduct] = useState(null);
 
-  const { addToCart } = useContext(CartContext)
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await fetch(
-          "http://localhost:5000/api/products/all-products?limit=6"
-        );
+        const res = await fetch("http://localhost:5000/api/products/all-products?limit=6");
         const data = await res.json();
 
         if (Array.isArray(data.products)) {
@@ -41,9 +39,7 @@ const BestSellers = () => {
   useEffect(() => {
     const fetchTopProduct = async () => {
       try {
-        const res = await fetch(
-          "http://localhost:5000/api/products/all-products?limit=1"
-        );
+        const res = await fetch("http://localhost:5000/api/products/all-products?limit=1");
         const data = await res.json();
 
         if (Array.isArray(data.products) && data.products.length > 0) {
@@ -83,14 +79,10 @@ const BestSellers = () => {
             className="mySwiper"
             onSwiper={(swiper) => {
               // Update progress bar width
-              const progressBar = document.getElementById(
-                "custom-progress-bar2"
-              );
+              const progressBar = document.getElementById("custom-progress-bar2");
               swiper.on("slideChange", () => {
                 const progress =
-                  (swiper.activeIndex /
-                    (swiper.slides.length - swiper.params.slidesPerView)) *
-                  100;
+                  (swiper.activeIndex / (swiper.slides.length - swiper.params.slidesPerView)) * 100;
 
                 progressBar.style.width = `${Math.min(progress, 100)}%`;
               });
@@ -98,15 +90,15 @@ const BestSellers = () => {
             breakpoints={{
               0: {
                 slidesPerView: 1.4,
-                spaceBetween: 32,
+                spaceBetween: 32
               },
               640: {
-                slidesPerView: 2,
+                slidesPerView: 2
               },
               1024: {
                 slidesPerView: 3,
-                spaceBetween: 16,
-              },
+                spaceBetween: 16
+              }
             }}
           >
             <motion.div
@@ -121,10 +113,7 @@ const BestSellers = () => {
                   <div>
                     <img
                       className="w-full"
-                      src={
-                        collection.imageUrls?.[0] ||
-                        "https://via.placeholder.com/300"
-                      }
+                      src={collection.imageUrls?.[0] || "https://via.placeholder.com/300"}
                       alt=""
                     />
                   </div>
@@ -148,13 +137,12 @@ const BestSellers = () => {
                     <div className="mt-2 mb-4 flex items-center gap-4 ">
                       <div className="mt-0 lg:mt-0 space-x-4">
                         <p className="space-x-2">
-                           <span className=" text-body-mobile lg:text-body-desktop text-white">
+                          <span className=" text-body-mobile lg:text-body-desktop text-white">
                             ₹{collection.actualprice || "499"}
                           </span>
                           <span className="line-through text-white/80 text-subtext-mobile lg:text-subtext-mobile">
                             ₹{collection.price || "999"}
                           </span>
-                         
                         </p>
                       </div>
                     </div>
@@ -214,10 +202,7 @@ const BestSellers = () => {
             <div className="mt-4">
               <img
                 className="h-[500px] lg:w-[350px] py-4 m-auto object-contain"
-                src={
-                  topProduct?.imageUrls?.[0] ||
-                  "https://via.placeholder.com/300"
-                }
+                src={topProduct?.imageUrls?.[0] || "https://via.placeholder.com/300"}
                 alt={topProduct?.title || "Product Image"}
               />
             </div>
@@ -235,20 +220,22 @@ const BestSellers = () => {
                 <p className="text-[#808080] font-light">2000</p>
               </div>
               <p className="text-[16px] text-home-bg-black mt-2 space-x-2">
-                 <span className="text-black text-body-mobile lg:text-body-desktop">
+                <span className="text-black text-body-mobile lg:text-body-desktop">
                   ₹{topProduct?.actualprice || "499"}
                 </span>
                 <span className="line-through font-light text-subtext-mobile text-sub-text-best ">
                   ₹{topProduct?.price || "999"}
                 </span>
-               
               </p>
             </div>
           </motion.div>
 
           {/* Button */}
           <div className="lg:mt-12 mt-2 flex justify-center">
-            <button onClick={() => addToCart(topProduct)} className="bg-home-bg-black text-white font-rubik font-medium px-16 lg:px-20 py-3 lg:py-6">
+            <button
+              onClick={() => addToCart(topProduct)}
+              className="bg-home-bg-black text-white font-rubik font-medium px-16 lg:px-20 py-3 lg:py-6"
+            >
               BUY NOW
             </button>
           </div>

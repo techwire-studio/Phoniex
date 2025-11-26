@@ -18,7 +18,7 @@ export const getProducts = async () => {
 export const createProduct = async (productData) => {
   try {
     const response = await axios.post(API_URL, productData, {
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" }
     });
     return response.data;
   } catch (error) {
@@ -26,7 +26,3 @@ export const createProduct = async (productData) => {
     throw error;
   }
 };
-
-
-
-

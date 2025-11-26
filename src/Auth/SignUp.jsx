@@ -13,10 +13,10 @@ const SignUp = () => {
     name: "",
     email: "",
     password: "",
-    phoneNumber: "",
+    phoneNumber: ""
   });
 
-  const {login} = useAuth()
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       await userService.signup(formData, login); // Pass login method from context
-      navigate('/'); // Redirect to home or dashboard after successful signup and login
+      navigate("/"); // Redirect to home or dashboard after successful signup and login
     } catch (err) {
       console.log(err);
     }
@@ -43,10 +43,7 @@ const SignUp = () => {
         <h2 className="lg:text-h1-desktop text-h1-mobile  font-bold font-tomorrow ">
           Create Account
         </h2>
-        <form
-          className="flex flex-col  w-4/5 lg:w-1/3 gap-8 mt-8 lg:mt-16"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex flex-col  w-4/5 lg:w-1/3 gap-8 mt-8 lg:mt-16" onSubmit={handleSubmit}>
           <input
             className="w-full py-3 lg:py-6  pl-4 border border-black placeholder:text-body-mobile lg:placeholder:text-body-desktop placeholder:font-rubik placeholder:font-medium placeholder:text-black placeholder:text-opacity-50"
             type="text"
@@ -88,8 +85,7 @@ const SignUp = () => {
           </button>
           <p className="font-rubik w-fit m-auto font-medium  border-auth-border lg:text-subtext-desktop text-subtext-mobile pb-2 text-black text-opacity-50   text-center">
             <Link to="/login">
-              Have trouble logging in?{" "}
-              <span className="font-bold text-black">Get help</span>{" "}
+              Have trouble logging in? <span className="font-bold text-black">Get help</span>{" "}
             </Link>
           </p>
         </form>

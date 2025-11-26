@@ -34,9 +34,7 @@ export const CartProvider = ({ children }) => {
     if (existing) {
       setCartItems((prev) =>
         prev.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         )
       );
     } else {
@@ -46,18 +44,14 @@ export const CartProvider = ({ children }) => {
 
   const increaseQty = (id) => {
     setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
+      prev.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item))
     );
   };
 
   const decreaseQty = (id) => {
     setCartItems((prev) =>
       prev
-        .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-        )
+        .map((item) => (item.id === id ? { ...item, quantity: item.quantity - 1 } : item))
         .filter((item) => item.quantity > 0)
     );
   };
@@ -81,7 +75,7 @@ export const CartProvider = ({ children }) => {
         increaseQty,
         decreaseQty,
         removeFromCart,
-        calculateSubtotal,
+        calculateSubtotal
       }}
     >
       {children}

@@ -6,7 +6,7 @@ import green from "../../../assets/green.png";
 import blue from "../../../assets/blue.png";
 import black from "../../../assets/black.png";
 import drop from "../../../assets/drop.png";
-import close from "../../../assets/close black.svg"
+import close from "../../../assets/close black.svg";
 import Header from "../../../common/Header";
 import star from "../../../assets/start.png";
 import { Link } from "react-router-dom";
@@ -15,12 +15,11 @@ import Footer from "../../../components/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import products from "../../../products";
 import { useCart } from "../../../context/CartContext";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Under15K = () => {
-  const [filteredProducts, setFilteredProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [isFilterDrop, setIsFilterDrop] = useState(false);
   const [isSortBy, setIsSortBy] = useState(false);
   const [sortOption, setSortOption] = useState("");
@@ -31,7 +30,7 @@ const Under15K = () => {
 
   useEffect(() => {
     const filtered = products.filter(
-      (product) => Number(product.actualPrice.replace(/,/g, "")) < 15000 
+      (product) => Number(product.actualPrice.replace(/,/g, "")) < 15000
     );
     setFilteredProducts(filtered);
   }, []);
@@ -65,7 +64,7 @@ const Under15K = () => {
       document.body.style.overflow = "unset";
     };
   }, [isFilterDrop]);
-  
+
   useEffect(() => {
     const sortProducts = () => {
       const sorted = [...filteredProducts];
@@ -82,16 +81,14 @@ const Under15K = () => {
         case "Price, low to high":
           sorted.sort(
             (a, b) =>
-              Number(a.actualPrice.replace(/,/g, "")) -
-              Number(b.actualPrice.replace(/,/g, ""))
+              Number(a.actualPrice.replace(/,/g, "")) - Number(b.actualPrice.replace(/,/g, ""))
           );
           break;
 
         case "Price, high to low":
           sorted.sort(
             (a, b) =>
-              Number(b.actualPrice.replace(/,/g, "")) -
-              Number(a.actualPrice.replace(/,/g, ""))
+              Number(b.actualPrice.replace(/,/g, "")) - Number(a.actualPrice.replace(/,/g, ""))
           );
           break;
 
@@ -112,26 +109,20 @@ const Under15K = () => {
   const handleAddToCart = (product) => {
     addToCart(product);
     toast.success("product has been added to the cart!", {
-      
-      autoClose: 1500, // Adjust the time the toast is displayed
+      autoClose: 1500 // Adjust the time the toast is displayed
     });
   };
 
   return (
     <div>
-      <ToastContainer 
-      theme="dark"
-      />
+      <ToastContainer theme="dark" />
       <Header />
       <div className=" w-full px-8 lg:px-16 h-fit flex flex-col lg:flex-row pt-10 lg:pt-20">
         <div className="hidden lg:block w-full lg:w-1/5 h-fit">
           <h1 className="font-rubik text-home-bg-black">
-            Collections /{" "}
-            <span className="text-text-light-gray">Under 15K</span>
+            Collections / <span className="text-text-light-gray">Under 15K</span>
           </h1>
-          <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">
-            Filter by Price
-          </h1>
+          <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">Filter by Price</h1>
           <input
             className="mt-4"
             type="range"
@@ -202,39 +193,27 @@ const Under15K = () => {
                         <div className="mt-4 space-y-4">
                           <div className="flex gap-2 items-center">
                             <img className="w-8" src={black} alt="" />
-                            <p className="font-rubik text-body-mobile">
-                              Black(12)
-                            </p>
+                            <p className="font-rubik text-body-mobile">Black(12)</p>
                           </div>
                           <div className="flex gap-2 items-center">
                             <img className="w-8" src={black} alt="" />
-                            <p className="font-rubik text-body-mobile">
-                              Black(12)
-                            </p>
+                            <p className="font-rubik text-body-mobile">Black(12)</p>
                           </div>
                           <div className="flex gap-2 items-center">
                             <img className="w-8" src={black} alt="" />
-                            <p className="font-rubik text-body-mobile">
-                              Black(12)
-                            </p>
+                            <p className="font-rubik text-body-mobile">Black(12)</p>
                           </div>
                           <div className="flex gap-2 items-center">
                             <img className="w-8" src={black} alt="" />
-                            <p className="font-rubik text-body-mobile">
-                              Black(12)
-                            </p>
+                            <p className="font-rubik text-body-mobile">Black(12)</p>
                           </div>
                           <div className="flex gap-2 items-center">
                             <img className="w-8" src={black} alt="" />
-                            <p className="font-rubik text-body-mobile">
-                              Black(12)
-                            </p>
+                            <p className="font-rubik text-body-mobile">Black(12)</p>
                           </div>
                           <div className="flex gap-2 items-center">
                             <img className="w-8" src={black} alt="" />
-                            <p className="font-rubik text-body-mobile">
-                              Black(12)
-                            </p>
+                            <p className="font-rubik text-body-mobile">Black(12)</p>
                           </div>
                         </div>
                       </div>
@@ -286,7 +265,7 @@ const Under15K = () => {
                             "Price, low to high",
                             "Price, high to low",
                             "Date, old to new",
-                            "Date, new to old",
+                            "Date, new to old"
                           ].map((option, index) => (
                             <li
                               key={index}
@@ -324,10 +303,7 @@ const Under15K = () => {
 
           <div className="w-full grid grid-cols-2 lg:grid-cols-3 mt-4 gap-4">
             {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="w-full py-4 flex flex-col justify-between h-full"
-              >
+              <div key={product.id} className="w-full py-4 flex flex-col justify-between h-full">
                 <div>
                   <Link to={`/product/${product.id}`}>
                     <img src={product.image1} alt="Product Image" />
@@ -365,11 +341,7 @@ const Under15K = () => {
                   </div>
                 </div>
                 <div className="font-rubik text-subtext-mobile lg:text-subtext-desktop flex border border-home-bg-black w-fit m-auto px-4 lg:px-8 py-2 lg:py-4 mt-4 text-home-bg-black font-medium">
-                
-                  <button onClick={() => handleAddToCart(product)}>
-                    ADD TO CART
-                  </button>
-                  
+                  <button onClick={() => handleAddToCart(product)}>ADD TO CART</button>
                 </div>
               </div>
             ))}

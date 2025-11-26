@@ -28,29 +28,25 @@ const Awards = () => {
       >
         <div>
           <p>
-            Our commitment to excellence is reflected in the numerous accolades
-            and certifications we’ve achieved. Proudly certified with ISO
-            standards,{" "}
+            Our commitment to excellence is reflected in the numerous accolades and certifications
+            we’ve achieved. Proudly certified with ISO standards,{" "}
           </p>{" "}
           <br />
           <p className="font-rubik ">
-            we ensure the highest levels of quality, safety, and environmental
-            responsibility in our products. Recognized for innovation and
-            ergonomic design, our office chairs have set industry benchmarks,
-            making us a trusted choice for businesses nationwide.
+            we ensure the highest levels of quality, safety, and environmental responsibility in our
+            products. Recognized for innovation and ergonomic design, our office chairs have set
+            industry benchmarks, making us a trusted choice for businesses nationwide.
           </p>{" "}
           <br />
           <p>
-            Our certifications validate our dedication to delivering only the
-            best, while our awards highlight the impact we’ve made in redefining
-            workplace comfort. From sustainable practices to cutting-edge
-            designs, every recognition inspires us to keep raising the bar.
-            Choose us for unmatched quality backed by trust and industry
-            acclaim.
+            Our certifications validate our dedication to delivering only the best, while our awards
+            highlight the impact we’ve made in redefining workplace comfort. From sustainable
+            practices to cutting-edge designs, every recognition inspires us to keep raising the
+            bar. Choose us for unmatched quality backed by trust and industry acclaim.
           </p>
           <button className="lg:hidden bg-[#282929] text-white font-rubik px-6 py-2 mt-4 text-[14px]">
-          Learn More
-        </button>
+            Learn More
+          </button>
         </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -60,20 +56,18 @@ const Awards = () => {
           className=" mt-0 lg:mt-8 lg:flex gap-4"
         >
           <div className="flex gap-4 m-auto ">
-              <img className="w-20" src={certificate1} alt="" />
-              <img className="w-20" src={certificate2} alt="" />
-              <img className="w-24" src={certificate3} alt="" />
+            <img className="w-20" src={certificate1} alt="" />
+            <img className="w-20" src={certificate2} alt="" />
+            <img className="w-24" src={certificate3} alt="" />
           </div>
           <div className="flex  justify-center gap-4">
-          <img className="w-20" src={certificate4} alt="" />
-          <img className="w-20" src={certificate5} alt="" />
+            <img className="w-20" src={certificate4} alt="" />
+            <img className="w-20" src={certificate5} alt="" />
           </div>
-         
         </motion.div>
         <button className="hidden lg:block bg-[#282929] text-white font-rubik px-6 py-2 mt-4 text-[16px]">
           Learn More
         </button>
-        
       </motion.div>
     </motion.div>
   );

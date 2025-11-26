@@ -29,12 +29,9 @@ const WfhProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/products/all-products",
-          {
-            params: { page: 1, limit: 100 }, // Adjust limit as needed
-          }
-        );
+        const response = await axios.get("http://localhost:5000/api/products/all-products", {
+          params: { page: 1, limit: 100 } // Adjust limit as needed
+        });
         const filteredProducts = response.data.products;
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -63,9 +60,7 @@ const WfhProducts = () => {
           sorted.sort((a, b) => (a.rating || 0) - (b.rating || 0));
           break;
         case "newestFirst":
-          sorted.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-          );
+          sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
           break;
         default:
           return sorted;
@@ -104,12 +99,9 @@ const WfhProducts = () => {
       <div className="w-full px-8 lg:px-16 h-fit flex flex-col lg:flex-row pt-10 lg:pt-20">
         <div className="hidden lg:block w-full lg:w-1/5 h-fit">
           <h1 className="font-rubik text-home-bg-black">
-            Collections /{" "}
-            <span className="text-text-light-gray">WFH Chairs</span>
+            Collections / <span className="text-text-light-gray">WFH Chairs</span>
           </h1>
-          <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">
-            Filter by Price
-          </h1>
+          <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">Filter by Price</h1>
           <input
             className="mt-4"
             type="range"
@@ -225,16 +217,13 @@ const WfhProducts = () => {
                             "Price: High to Low",
                             "Rating: High to Low",
                             "Rating: Low to High",
-                            "Newest First",
+                            "Newest First"
                           ].map((option, index) => (
                             <li
                               key={index}
                               onClick={() => {
                                 setSortOption(
-                                  option
-                                    .toLowerCase()
-                                    .replace(/: /g, "")
-                                    .replace(/ /g, "")
+                                  option.toLowerCase().replace(/: /g, "").replace(/ /g, "")
                                 );
                                 setIsSortBy(false);
                               }}
@@ -264,10 +253,7 @@ const WfhProducts = () => {
           </div>
           <div className="w-full grid grid-cols-2 lg:grid-cols-3 mt-4 gap-4">
             {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="w-full py-4 flex flex-col justify-between h-full"
-              >
+              <div key={product.id} className="w-full py-4 flex flex-col justify-between h-full">
                 <div>
                   <Link to={`/product/${product.id}`}>
                     <img
@@ -289,10 +275,12 @@ const WfhProducts = () => {
                   <div className="mt-4 font-rubik">
                     <p className="text-[16px] space-x-2">
                       <span className="line-through text-sub-text-best text-[10px]">
-                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price) + 500)}.00
+                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price) + 500)}
+                        .00
                       </span>
                       <span className="text-black">
-                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price))}.00
+                        ₹{new Intl.NumberFormat("en-IN").format(Number(product.price))}
+                        .00
                       </span>
                     </p>
                   </div>

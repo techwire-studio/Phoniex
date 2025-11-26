@@ -33,9 +33,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="font-rubik">
-          <h1 className="text-white  font-semibold text-[18px]">
-            OUR COLLECTIONS
-          </h1>
+          <h1 className="text-white  font-semibold text-[18px]">OUR COLLECTIONS</h1>
           <ul className="flex flex-col gap-8 mt-6 text-white font-light text-[14px]">
             <li>Basic Chairs</li>
             <li>Luxury</li>
@@ -51,9 +49,7 @@ const Footer = () => {
             <li>Ph: +91 88848 56173</li>
             <li>Email: sales@phoneix.com</li>
           </ul>
-          <h1 className="mt-6 font-semibold text-[16px]">
-            FOR SUPPORT ENQUIRY{" "}
-          </h1>
+          <h1 className="mt-6 font-semibold text-[16px]">FOR SUPPORT ENQUIRY </h1>
           <ul className="font-light mt-4 flex flex-col gap-2 text-[14px]">
             <li>Ph: +91 88848 56173</li>
             <li>Email: support@phoneix.com</li>
@@ -75,9 +71,7 @@ const Footer = () => {
       <div className="lg:hidden py-4 font-rubik px-8">
         <div className="h-fit w-full bg-home-bg-black flex gap-4">
           <div className="w-1/3 font-rubik">
-            <h1 className="text-white  font-semibold text-subtext-mobile">
-              MY ACCOUNT
-            </h1>
+            <h1 className="text-white  font-semibold text-subtext-mobile">MY ACCOUNT</h1>
             <ul className="flex flex-col gap-2 mt-4 text-white font-light text-[10px]">
               <li>Account</li>
 
@@ -87,9 +81,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="w-1/3">
-            <h1 className="text-white  font-semibold text-subtext-mobile">
-              OUR LEGAL
-            </h1>
+            <h1 className="text-white  font-semibold text-subtext-mobile">OUR LEGAL</h1>
             <ul className="flex flex-col gap-2 mt-4 text-white font-light text-[10px]">
               <li>Terms & Conditions</li>
               <li>Privacy Policy</li>
@@ -99,9 +91,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="w-1/3">
-            <h1 className="text-white  font-semibold text-subtext-mobile">
-              FOLLOW US
-            </h1>
+            <h1 className="text-white  font-semibold text-subtext-mobile">FOLLOW US</h1>
             <ul className="flex flex-col gap-2 mt-4 text-white font-light text-[10px]">
               <li>Facebook</li>
               <li>Twitter</li>
@@ -113,9 +103,7 @@ const Footer = () => {
         </div>
         <div className="h-fit w-full font-rubik py-4 flex gap-4">
           <div className="w-1/3 ">
-            <h1 className="text-white  font-semibold text-subtext-mobile">
-              OUR COLLECTIONS
-            </h1>
+            <h1 className="text-white  font-semibold text-subtext-mobile">OUR COLLECTIONS</h1>
             <ul className="flex flex-col gap-2 mt-4 text-white font-light text-[10px]">
               <li>Facebook</li>
               <li>Basic Chairs</li>
@@ -127,24 +115,18 @@ const Footer = () => {
           </div>
           <div className="w-full  font-rubik pl-4">
             <div>
-              <h1 className="text-white  font-semibold text-subtext-mobile">
-                CONTACT US
-              </h1>
+              <h1 className="text-white  font-semibold text-subtext-mobile">CONTACT US</h1>
             </div>
             <div className="flex gap-4 text-white">
               <div className="">
-                <h1 className="mt-6 font-semibold text-subtext-mobile">
-                  FOR SALES ENQUIRY{" "}
-                </h1>
+                <h1 className="mt-6 font-semibold text-subtext-mobile">FOR SALES ENQUIRY </h1>
                 <ul className="font-light mt-4 flex flex-col gap-2 text-[10px]">
                   <li>Ph: +91 88848 56173</li>
                   <li>Email: sales@phoneix.com</li>
                 </ul>
               </div>
               <div>
-                <h1 className="mt-6 font-semibold text-subtext-mobile">
-                  FOR SUPPORT ENQUIRY{" "}
-                </h1>
+                <h1 className="mt-6 font-semibold text-subtext-mobile">FOR SUPPORT ENQUIRY </h1>
                 <ul className="font-light mt-4 flex flex-col gap-2 text-[10px]">
                   <li>Ph: +91 88848 56173</li>
                   <li>Email: support@phoneix.com</li>
@@ -185,8 +167,8 @@ const Footer = () => {
       <div className="mt-8 space-y-2 lg:flex px-8">
         <div className="w-full lg:w-3/5  text-copyright-text text-[10px] text-center lg:text-[14px] font-light font-montserrat flex  items-center">
           <p>
-            Copyright © 2024 Lakshmi Venkateshwara Furniture And Works pvt ltd.
-            All rights reserved{" "}
+            Copyright © 2024 Lakshmi Venkateshwara Furniture And Works pvt ltd. All rights
+            reserved{" "}
           </p>
         </div>
         <div className="w-full lg:w-2/5 m-auto flex lg:justify-end">

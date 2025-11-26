@@ -33,8 +33,7 @@ import { FixedSizeList as List } from "react-window";
 import { CartContext } from "../context/CartContext";
 
 const Header = () => {
-  const { cartItems, increaseQty, decreaseQty, removeFromCart } =
-    useContext(CartContext);
+  const { cartItems, increaseQty, decreaseQty, removeFromCart } = useContext(CartContext);
   const { calculateSubtotal } = useContext(CartContext);
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -89,9 +88,7 @@ const Header = () => {
 
         {/* Info */}
         <div className="w-4/5 px-2 h-fit pt-2">
-          <p className="text-body-mobile lg:text-body-desktop font-roboto">
-            {cart.title}
-          </p>
+          <p className="text-body-mobile lg:text-body-desktop font-roboto">{cart.title}</p>
           <p className="text-subtext-mobile lg:text-subtext-desktop font-roboto">
             {cart.description}
           </p>
@@ -143,8 +140,7 @@ const Header = () => {
   // Delete Address
   const handleDeleteAddress = (index) => {
     // Get existing addresses from localStorage
-    const existingAddresses =
-      JSON.parse(localStorage.getItem("addresses")) || [];
+    const existingAddresses = JSON.parse(localStorage.getItem("addresses")) || [];
 
     // Remove the selected address
     const updatedAddresses = existingAddresses.filter((_, i) => i !== index);
@@ -178,11 +174,10 @@ const Header = () => {
       address,
       email,
       fullName,
-      phoneNumber,
+      phoneNumber
     };
 
-    const existingAddresses =
-      JSON.parse(localStorage.getItem("addresses")) || [];
+    const existingAddresses = JSON.parse(localStorage.getItem("addresses")) || [];
 
     existingAddresses.push(formData);
 
@@ -209,8 +204,7 @@ const Header = () => {
 
   // Retrieve saved addresses from localStorage when component mounts
   useEffect(() => {
-    const existingAddresses =
-      JSON.parse(localStorage.getItem("addresses")) || [];
+    const existingAddresses = JSON.parse(localStorage.getItem("addresses")) || [];
     setSavedAddress(existingAddresses);
   }, []);
 
@@ -227,7 +221,7 @@ const Header = () => {
     { image: wfh, title: "Work From Home", path: "/wfh-chairs" },
     { image: gaming, title: "Gaming", path: "/gaming-chairs" },
     { image: boss, title: "Boss Chairs", path: "/boss-chairs" },
-    { image: executive, title: "Executive Chairs", path: "/executive-chairs" },
+    { image: executive, title: "Executive Chairs", path: "/executive-chairs" }
   ];
 
   // const calculateSubtotal = () => {
@@ -290,7 +284,7 @@ const Header = () => {
             animate={{ height: "250px", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{
-              duration: 0.6,
+              duration: 0.6
             }}
             className="w-full bg-white fixed top-0 z-50 py-10 flex flex-col gap-8 justify-center items-center overflow-hidden"
           >
@@ -421,18 +415,14 @@ const Header = () => {
       {/* -----------------------Collection Div---------------------------- */}
       {isCollectionOpen && (
         <div className="z-20 absolute top-[150px] w-full h-[450px]  bg-white  px-16 py-16">
-          <h1 className="font-tomorrow font-bold text-[32px] pl-16">
-            OUR COLLECTIONS
-          </h1>
+          <h1 className="font-tomorrow font-bold text-[32px] pl-16">OUR COLLECTIONS</h1>
           <div className="grid grid-cols-6 pl-16 gap-8">
             {collections.map((collection, index) => (
               <div className="mt-8" key={index}>
                 <Link to={collection.path}>
                   <img src={collection.image} alt="" />
                 </Link>
-                <p className="mt-8 text-center font-rubik font-medium">
-                  {collection.title}
-                </p>
+                <p className="mt-8 text-center font-rubik font-medium">{collection.title}</p>
               </div>
             ))}
           </div>
@@ -463,9 +453,7 @@ const Header = () => {
                 ) : (
                   <List
                     height={
-                      window.innerWidth < 768
-                        ? window.innerHeight - 230
-                        : window.innerHeight - 240
+                      window.innerWidth < 768 ? window.innerHeight - 230 : window.innerHeight - 240
                     }
                     itemCount={cartItems.length}
                     itemSize={220}
@@ -501,12 +489,7 @@ const Header = () => {
                     <p className="font-roboto font-semibold lg:text-[24px] text-[20px]">
                       Sub Total
                     </p>
-                    <p>
-                      ₹{" "}
-                      {new Intl.NumberFormat("en-IN").format(
-                        calculateSubtotal()
-                      )}
-                    </p>
+                    <p>₹ {new Intl.NumberFormat("en-IN").format(calculateSubtotal())}</p>
                   </div>
 
                   <button
@@ -547,9 +530,7 @@ const Header = () => {
                   src={back}
                   alt=""
                 />
-                <p className="font-tomorrow font-bold text-h2-mobile lg:text-h2-desktop">
-                  PHEONIX
-                </p>
+                <p className="font-tomorrow font-bold text-h2-mobile lg:text-h2-desktop">PHEONIX</p>
               </div>
               <div className="w-full mt-10 px-4 space-y-4">
                 <div className="border border-black w-full">
@@ -828,9 +809,7 @@ const Header = () => {
                                       placeholder="Your Address"
                                       value={address}
                                       required
-                                      onChange={(e) =>
-                                        setAddress(e.target.value)
-                                      }
+                                      onChange={(e) => setAddress(e.target.value)}
                                     />
                                   </label>
                                 </div>
@@ -872,9 +851,7 @@ const Header = () => {
                                     placeholder="Full Name"
                                     value={fullName}
                                     required
-                                    onChange={(e) =>
-                                      setFullName(e.target.value)
-                                    }
+                                    onChange={(e) => setFullName(e.target.value)}
                                   />
                                 </label>
                               </div>
@@ -889,9 +866,7 @@ const Header = () => {
                                     placeholder="Phone Number"
                                     value={phoneNumber}
                                     required
-                                    onChange={(e) =>
-                                      setPhoneNumber(e.target.value)
-                                    }
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
                                   />
                                 </label>
                               </div>
@@ -941,8 +916,8 @@ const Header = () => {
                             </div>
                             <div className="px-2 w-2/3 mt-2">
                               <p>
-                                {addressData.address}, {addressData.city},{" "}
-                                {addressData.state}, {savedPinCode}
+                                {addressData.address}, {addressData.city}, {addressData.state},{" "}
+                                {savedPinCode}
                               </p>
                             </div>
                             <div className="w-full px-2 flex items-center text-black text-opacity-50">
@@ -986,9 +961,7 @@ const Header = () => {
               <div className="w-full lg:w-1/3 fixed bottom-4 z-20  px-4">
                 <button
                   className={`w-full text-white font-rubik py-2 ${
-                    selectedAddress
-                      ? "bg-black cursor-pointer"
-                      : "bg-gray-400 cursor-not-allowed"
+                    selectedAddress ? "bg-black cursor-pointer" : "bg-gray-400 cursor-not-allowed"
                   }`}
                   disabled={!selectedAddress}
                   // onClick={handleProceedPayment}
@@ -1044,8 +1017,7 @@ const Header = () => {
                             onClick={() => setIsShopBy(false)}
                             className="text-h4-mobile flex gap-2 items-center cursor-pointer"
                           >
-                            <img className="w-4 h-4" src={back} alt="" /> Shop
-                            By
+                            <img className="w-4 h-4" src={back} alt="" /> Shop By
                           </p>
                         </div>
                         <div className="w-1/3  h-full py-2 flex justify-end">
@@ -1075,12 +1047,7 @@ const Header = () => {
                                       onClick={() => setIsSupportNeed(false)}
                                       className="text-h4-mobile flex gap-2 items-center cursor-pointer"
                                     >
-                                      <img
-                                        className="w-4 h-4"
-                                        src={back}
-                                        alt=""
-                                      />{" "}
-                                      Support Needs
+                                      <img className="w-4 h-4" src={back} alt="" /> Support Needs
                                     </p>
                                   </div>
                                   <div className="w-1/3  h-full py-2 flex justify-end">
@@ -1097,80 +1064,50 @@ const Header = () => {
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Posture
-                                          </p>
+                                          <p className="text-body-mobile">Posture</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Lumbar Support
-                                          </p>
+                                          <p className="text-body-mobile">Lumbar Support</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Neck Support
-                                          </p>
+                                          <p className="text-body-mobile">Neck Support</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Best Seller
-                                          </p>
+                                          <p className="text-body-mobile">Best Seller</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Work Arrival
-                                          </p>
+                                          <p className="text-body-mobile">Work Arrival</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
@@ -1189,16 +1126,10 @@ const Header = () => {
                           <li onClick={() => setIsSupportNeed(true)}>
                             <div className="w-full h-fit flex">
                               <div className="w-2/3 py-2 flex justify-start">
-                                <p className="text-body-mobile">
-                                  Support Needs
-                                </p>
+                                <p className="text-body-mobile">Support Needs</p>
                               </div>
                               <div className="w-1/3  py-2 justify-end flex">
-                                <img
-                                  className="w-4 h-4 mt-1"
-                                  src={arrow}
-                                  alt=""
-                                />
+                                <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                               </div>
                             </div>
                           </li>
@@ -1218,12 +1149,7 @@ const Header = () => {
                                       onClick={() => setIsPrice(false)}
                                       className="text-h4-mobile flex gap-2 items-center cursor-pointer"
                                     >
-                                      <img
-                                        className="w-4 h-4"
-                                        src={back}
-                                        alt=""
-                                      />{" "}
-                                      Price
+                                      <img className="w-4 h-4" src={back} alt="" /> Price
                                     </p>
                                   </div>
                                   <div className="w-1/3  h-full py-2 flex justify-end">
@@ -1241,17 +1167,11 @@ const Header = () => {
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
                                           <Link to="/under5k">
-                                            <p className="text-body-mobile">
-                                              Under ₹5000
-                                            </p>
+                                            <p className="text-body-mobile">Under ₹5000</p>
                                           </Link>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
@@ -1259,17 +1179,11 @@ const Header = () => {
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
                                           <Link to="/under15k">
-                                            <p className="text-body-mobile">
-                                              Under ₹15000
-                                            </p>
+                                            <p className="text-body-mobile">Under ₹15000</p>
                                           </Link>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
@@ -1277,17 +1191,11 @@ const Header = () => {
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
                                           <Link to="/above15k">
-                                            <p className="text-body-mobile">
-                                              Above ₹15000
-                                            </p>
+                                            <p className="text-body-mobile">Above ₹15000</p>
                                           </Link>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
@@ -1308,11 +1216,7 @@ const Header = () => {
                                 <p className="text-body-mobile">Price</p>
                               </div>
                               <div className="w-1/3  py-2 justify-end flex">
-                                <img
-                                  className="w-4 h-4 mt-1"
-                                  src={arrow}
-                                  alt=""
-                                />
+                                <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                               </div>
                             </div>
                           </li>
@@ -1332,12 +1236,7 @@ const Header = () => {
                                       onClick={() => setIsFeatures(false)}
                                       className="text-h4-mobile flex gap-2 items-center cursor-pointer"
                                     >
-                                      <img
-                                        className="w-4 h-4"
-                                        src={back}
-                                        alt=""
-                                      />{" "}
-                                      Features
+                                      <img className="w-4 h-4" src={back} alt="" /> Features
                                     </p>
                                   </div>
                                   <div className="w-1/3  h-full py-2 flex justify-end">
@@ -1354,64 +1253,40 @@ const Header = () => {
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Arm Rest
-                                          </p>
+                                          <p className="text-body-mobile">Arm Rest</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Head Rest
-                                          </p>
+                                          <p className="text-body-mobile">Head Rest</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Lumbar Rest
-                                          </p>
+                                          <p className="text-body-mobile">Lumbar Rest</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Metal Base
-                                          </p>
+                                          <p className="text-body-mobile">Metal Base</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
@@ -1431,11 +1306,7 @@ const Header = () => {
                                 <p className="text-body-mobile">Features</p>
                               </div>
                               <div className="w-1/3  py-2 justify-end flex">
-                                <img
-                                  className="w-4 h-4 mt-1"
-                                  src={arrow}
-                                  alt=""
-                                />
+                                <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                               </div>
                             </div>
                           </li>
@@ -1456,12 +1327,7 @@ const Header = () => {
                                       onClick={() => setIsBestSeller(false)}
                                       className="text-h4-mobile flex gap-2 items-center cursor-pointer"
                                     >
-                                      <img
-                                        className="w-4 h-4"
-                                        src={back}
-                                        alt=""
-                                      />{" "}
-                                      Best Seller
+                                      <img className="w-4 h-4" src={back} alt="" /> Best Seller
                                     </p>
                                   </div>
                                   <div className="w-1/3  h-full py-2 flex justify-end">
@@ -1478,64 +1344,40 @@ const Header = () => {
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Ergonomic Chair
-                                          </p>
+                                          <p className="text-body-mobile">Ergonomic Chair</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Ergonomic Pro Chair
-                                          </p>
+                                          <p className="text-body-mobile">Ergonomic Pro Chair</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Verve Chair
-                                          </p>
+                                          <p className="text-body-mobile">Verve Chair</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Task Chair
-                                          </p>
+                                          <p className="text-body-mobile">Task Chair</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
@@ -1555,11 +1397,7 @@ const Header = () => {
                                 <p className="text-body-mobile">Best Seller</p>
                               </div>
                               <div className="w-1/3  py-2 justify-end flex">
-                                <img
-                                  className="w-4 h-4 mt-1"
-                                  src={arrow}
-                                  alt=""
-                                />
+                                <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                               </div>
                             </div>
                           </li>
@@ -1579,12 +1417,7 @@ const Header = () => {
                                       onClick={() => setIsNewArrival(false)}
                                       className="text-h4-mobile flex gap-2 items-center cursor-pointer"
                                     >
-                                      <img
-                                        className="w-4 h-4"
-                                        src={back}
-                                        alt=""
-                                      />{" "}
-                                      New Arrival
+                                      <img className="w-4 h-4" src={back} alt="" /> New Arrival
                                     </p>
                                   </div>
                                   <div className="w-1/3  h-full py-2 flex justify-end">
@@ -1601,48 +1434,30 @@ const Header = () => {
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Ergonomic Pro Chair
-                                          </p>
+                                          <p className="text-body-mobile">Ergonomic Pro Chair</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Aire Chair
-                                          </p>
+                                          <p className="text-body-mobile">Aire Chair</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
                                     <li>
                                       <div className="w-full h-fit flex">
                                         <div className="w-2/3 py-2 flex justify-start">
-                                          <p className="text-body-mobile">
-                                            Gaming Chair
-                                          </p>
+                                          <p className="text-body-mobile">Gaming Chair</p>
                                         </div>
                                         <div className="w-1/3  py-2 justify-end flex">
-                                          <img
-                                            className="w-4 h-4 mt-1"
-                                            src={arrow}
-                                            alt=""
-                                          />
+                                          <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                                         </div>
                                       </div>
                                     </li>
@@ -1662,11 +1477,7 @@ const Header = () => {
                                 <p className="text-body-mobile">New Arrival</p>
                               </div>
                               <div className="w-1/3  py-2 justify-end flex">
-                                <img
-                                  className="w-4 h-4 mt-1"
-                                  src={arrow}
-                                  alt=""
-                                />
+                                <img className="w-4 h-4 mt-1" src={arrow} alt="" />
                               </div>
                             </div>
                           </li>
@@ -1682,10 +1493,7 @@ const Header = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <li
-                  className="cursor-pointer"
-                  onClick={() => setIsShopBy(true)}
-                >
+                <li className="cursor-pointer" onClick={() => setIsShopBy(true)}>
                   <div className="w-full h-fit flex">
                     <div className="w-2/3 py-2 flex justify-start">
                       <p className="text-body-mobile">Shop By</p>
@@ -1712,8 +1520,7 @@ const Header = () => {
                             onClick={() => setIsCollections(false)}
                             className="text-h4-mobile flex gap-2 items-center cursor-pointer"
                           >
-                            <img className="w-4 h-4" src={back} alt="" />{" "}
-                            Collections
+                            <img className="w-4 h-4" src={back} alt="" /> Collections
                           </p>
                         </div>
                         <div className="w-1/3  h-full py-2 flex justify-end">
@@ -1868,9 +1675,7 @@ const Header = () => {
         {/* ===========Div 2-2 ============ */}
         <div className="w-1/5  flex justify-center items-center ">
           <Link to="/">
-            <p className="font-tomorrow font-bold text-white text-[22px] py-8">
-              PHEONIX
-            </p>
+            <p className="font-tomorrow font-bold text-white text-[22px] py-8">PHEONIX</p>
           </Link>
         </div>
         {/* ===========Div 2-3 ============ */}
@@ -1932,9 +1737,7 @@ const Header = () => {
         </div>
         <div className="w-3/5  py-8 ">
           <Link to="/">
-            <p className="font-tomorrow font-bold text-white text-h2-mobile text-center">
-              PHEONIX
-            </p>
+            <p className="font-tomorrow font-bold text-white text-h2-mobile text-center">PHEONIX</p>
           </Link>
         </div>
         <div className="w-3/5 pr-4  flex justify-end items-center gap-4 py-8">
@@ -1954,20 +1757,20 @@ const Header = () => {
             <img className="w-6 h-6" src={cart} alt="" />
           </button> */}
           <button
-              onClick={(e) => {
-                e.preventDefault();
-                setIsCartOpen(true);
-              }}
-              className="relative"
-            >
-              <img className="w-6" src={cart} alt="Cart" />
+            onClick={(e) => {
+              e.preventDefault();
+              setIsCartOpen(true);
+            }}
+            className="relative"
+          >
+            <img className="w-6" src={cart} alt="Cart" />
 
-              {cartItems.length > 0 && (
-                <span className="absolute -top-3 bg-red-500 px-2 py-0 -right-4 text-white text-[16px] font-bold rounded-full ">
-                  {cartItems.length}
-                </span>
-              )}
-            </button>
+            {cartItems.length > 0 && (
+              <span className="absolute -top-3 bg-red-500 px-2 py-0 -right-4 text-white text-[16px] font-bold rounded-full ">
+                {cartItems.length}
+              </span>
+            )}
+          </button>
         </div>
       </div>
     </div>

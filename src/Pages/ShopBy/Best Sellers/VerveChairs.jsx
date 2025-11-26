@@ -1,15 +1,15 @@
-import Header from '../../../common/Header'
-import Bulk from '../../../components/Bulk'
-import Footer from '../../../components/Footer'
+import Header from "../../../common/Header";
+import Bulk from "../../../components/Bulk";
+import Footer from "../../../components/Footer";
 
 const VerveChairs = () => {
   return (
     <div>
-        <Header/>
-        <Bulk/>
-        <Footer/>
+      <Header />
+      <Bulk />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default VerveChairs
+export default VerveChairs;

@@ -17,8 +17,6 @@ export const AuthProvider = ({ children }) => {
     setUserIsAuthenticated(true); // Update state to indicate user is logged in
   };
 
-  
-
   // Handle user logout
   const logout = () => {
     localStorage.removeItem("authToken"); // Remove token from localStorage
@@ -26,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ userIsAuthenticated, login, logout}}>
+    <AuthContext.Provider value={{ userIsAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

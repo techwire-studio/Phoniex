@@ -11,7 +11,7 @@ const AddProduct = () => {
     price: "",
     stock: "",
     categoryId: "",
-    images: [],
+    images: []
   });
 
   const [categories, setCategories] = useState([]);
@@ -53,21 +53,21 @@ const AddProduct = () => {
       try {
         // Set compression options
         const options = {
-          maxSizeMB: .1, // Max size in MB
+          maxSizeMB: 0.1, // Max size in MB
           maxWidthOrHeight: 200, // Max width or height in pixels
-          useWebWorker: true,
+          useWebWorker: true
         };
-  
+
         // Compress the image
         const compressedFile = await imageCompression(file, options);
-  
+
         // Convert compressed image to base64
         const reader = new FileReader();
         reader.onload = () => {
           const base64String = reader.result; // Base64 string
           setFormData((prevState) => ({
             ...prevState,
-            images: [...prevState.images, base64String],
+            images: [...prevState.images, base64String]
           }));
         };
         reader.readAsDataURL(compressedFile); // Read compressed file as base64
@@ -79,7 +79,6 @@ const AddProduct = () => {
       alert("You can only upload up to 5 images.");
     }
   };
-  
 
   const handleRemoveImage = (index) => {
     const updatedImages = formData.images.filter((_, i) => i !== index);
@@ -98,11 +97,19 @@ const AddProduct = () => {
         ...formData,
         id: formData.id ? parseInt(formData.id) : undefined,
         price: parseFloat(formData.price),
-        stock: parseInt(formData.stock),
+        stock: parseInt(formData.stock)
       };
       await createProduct(productData);
       alert("Product added successfully!");
-      setFormData({ id: "", name: "", description: "", price: "", stock: "", categoryId: "", images: [] }); // Clear form
+      setFormData({
+        id: "",
+        name: "",
+        description: "",
+        price: "",
+        stock: "",
+        categoryId: "",
+        images: []
+      }); // Clear form
     } catch (error) {
       console.error("Error adding product:", error);
       alert("Failed to add product.");
@@ -151,12 +158,7 @@ const AddProduct = () => {
         onChange={handleChange}
         required
       />
-      <select
-        name="categoryId"
-        value={formData.categoryId}
-        onChange={handleChange}
-        required
-      >
+      <select name="categoryId" value={formData.categoryId} onChange={handleChange} required>
         <option value="">Select Category</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
@@ -167,11 +169,7 @@ const AddProduct = () => {
 
       {/* Image upload section */}
       <div>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
+        <input type="file" accept="image/*" onChange={handleImageChange} />
         <button type="button" onClick={() => document.querySelector('input[type="file"]').click()}>
           Add More Images
         </button>
@@ -184,7 +182,9 @@ const AddProduct = () => {
             {formData.images.map((image, index) => (
               <li key={index}>
                 <img src={image} alt={`preview-${index}`} width={100} height={100} />
-                <button type="button" onClick={() => handleRemoveImage(index)}>Remove</button>
+                <button type="button" onClick={() => handleRemoveImage(index)}>
+                  Remove
+                </button>
               </li>
             ))}
           </ul>

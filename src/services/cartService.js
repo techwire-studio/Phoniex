@@ -6,7 +6,7 @@ const cartService = {
   // Add a product to the cart
   addToCart(product) {
     const cart = this.getCart();
-    const existingProduct = cart.find(item => item.id === product.id);
+    const existingProduct = cart.find((item) => item.id === product.id);
 
     if (existingProduct) {
       existingProduct.quantity += 1; // Increase quantity if product already exists
@@ -26,14 +26,14 @@ const cartService = {
   // Remove a product from the cart by ID
   removeFromCart(productId) {
     const cart = this.getCart();
-    const updatedCart = cart.filter(item => item.id !== productId);
+    const updatedCart = cart.filter((item) => item.id !== productId);
     localStorage.setItem(CART_KEY, JSON.stringify(updatedCart));
   },
 
   // Clear the cart
   clearCart() {
     localStorage.removeItem(CART_KEY);
-  },
+  }
 };
 
 export default cartService;

@@ -9,10 +9,10 @@ const Footer = lazy(() => import("../components/Footer"));
 
 const Login = () => {
   const { login } = useAuth(); // Get login method from AuthContext
-  const { logout } = useAuth(); 
+  const { logout } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const navigate = useNavigate();
@@ -25,14 +25,14 @@ const Login = () => {
   const handleLogout = () => {
     logout(); // Call the logout function from AuthContext
     navigate("/"); // Redirect the user to the homepage or login page after logging out
-  };  
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await userService.login(formData, login); // Pass login method to update state
       navigate("/");
-      setFormData("")// Redirect to home page after login
+      setFormData(""); // Redirect to home page after login
     } catch (err) {
       console.log(err);
     }
@@ -43,10 +43,7 @@ const Login = () => {
       <Header />
       <div className="flex flex-col justify-center items-center py-20">
         <h2 className="lg:text-h1-desktop text-h1-mobile font-bold font-tomorrow">Login</h2>
-        <form
-          className="flex flex-col w-4/5 lg:w-1/3 gap-8 mt-8 lg:mt-16"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex flex-col w-4/5 lg:w-1/3 gap-8 mt-8 lg:mt-16" onSubmit={handleSubmit}>
           <input
             className="w-full py-3 lg:py-6 pl-4 border border-black placeholder:text-body-mobile lg:placeholder:text-body-desktop placeholder:font-rubik placeholder:font-medium placeholder:text-black placeholder:text-opacity-50"
             type="email"
@@ -76,10 +73,7 @@ const Login = () => {
             <Link to="/sign-up">Create Account</Link>
           </p>
         </form>
-        <button
-        onClick={handleLogout}
-      className="bg-red-500 text-white py-2 px-4 rounded mt-4"
-        >
+        <button onClick={handleLogout} className="bg-red-500 text-white py-2 px-4 rounded mt-4">
           Log Out
         </button>
       </div>

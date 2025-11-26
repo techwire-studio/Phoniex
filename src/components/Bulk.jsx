@@ -17,11 +17,10 @@ const Bulk = () => {
         </p>{" "}
         <br /> <br />
         <p className="pr-0 text-subtext-mobile lg:text-subtext-desktop text-home-bg-black font-light w-full lg:w-1/2 font-rubik">
-          Looking to furnish your office or workspace with premium ergonomic
-          chairs? We specialize in fulfilling corporate bulk orders with
-          customized solutions tailored to your team’s comfort and productivity
-          needs. Whether it’s a startup or a large organization, we’ve got you
-          covered with competitive pricing and dedicated support.
+          Looking to furnish your office or workspace with premium ergonomic chairs? We specialize
+          in fulfilling corporate bulk orders with customized solutions tailored to your team’s
+          comfort and productivity needs. Whether it’s a startup or a large organization, we’ve got
+          you covered with competitive pricing and dedicated support.
         </p>{" "}
         <br /> <br />
         <a href="">

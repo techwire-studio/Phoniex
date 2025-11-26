@@ -14,7 +14,7 @@ const Collection = () => {
     { image: collection3, title: "WFH" },
     { image: collection1, title: "LUXURY" },
     { image: collection2, title: "GAMING" },
-    { image: collection3, title: "WFH" },
+    { image: collection3, title: "WFH" }
   ];
 
   return (
@@ -48,23 +48,21 @@ const Collection = () => {
             const progressBar = document.getElementById("custom-progress-bar3");
             swiper.on("slideChange", () => {
               const progress =
-                (swiper.activeIndex /
-                  (swiper.slides.length - swiper.params.slidesPerView)) *
-                100;
+                (swiper.activeIndex / (swiper.slides.length - swiper.params.slidesPerView)) * 100;
 
               progressBar.style.width = `${Math.min(progress, 100)}%`;
             });
           }}
           breakpoints={{
             0: {
-              slidesPerView: 2,
+              slidesPerView: 2
             },
             640: {
-              slidesPerView: 2.5,
+              slidesPerView: 2.5
             },
             1024: {
-              slidesPerView: 3.5,
-            },
+              slidesPerView: 3.5
+            }
           }}
         >
           {collections.map((collection, index) => (
@@ -74,7 +72,7 @@ const Collection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{
-                  duration: 1,
+                  duration: 1
                 }}
               >
                 <motion.img

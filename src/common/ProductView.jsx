@@ -18,9 +18,9 @@ const ProductView = () => {
   const handleSortChange = (event) => {
     const selectedOption = event.target.value;
     setSortOption(selectedOption);
-  
+
     let sortedProducts = [...filteredProducts]; // Create a copy to avoid direct mutation
-  
+
     switch (selectedOption) {
       case "priceLowToHigh":
         sortedProducts.sort((a, b) => a.price - b.price);
@@ -40,19 +40,17 @@ const ProductView = () => {
       default:
         break;
     }
-    
+
     setFilteredProducts(sortedProducts);
   };
-  
+
   return (
     <div className="w-full px-16  h-fit flex pt-20">
       <div className="w-1/5 h-fit ">
         <h1 className="font-rubik text-home-bg-black">
           Home / <span className="text-text-light-gray">Posture</span>
         </h1>
-        <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">
-          Filter by Price
-        </h1>
+        <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">Filter by Price</h1>
         <input
           className="mt-4 "
           type="range"
@@ -90,9 +88,7 @@ const ProductView = () => {
             <option value="newestFirst">Newest First</option>
           </select>
         </div>
-        <div className="w-full grid grid-cols-3 px-8 gap-y-20">
-
-        </div>
+        <div className="w-full grid grid-cols-3 px-8 gap-y-20"></div>
       </div>
     </div>
   );

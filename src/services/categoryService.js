@@ -19,8 +19,8 @@ export const createCategory = async (categoryData) => {
   try {
     const response = await axios.post(API_URL, categoryData, {
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     });
     return response.data; // Return the created category
   } catch (error) {

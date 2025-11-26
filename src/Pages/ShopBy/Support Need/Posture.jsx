@@ -2,8 +2,6 @@ import { useState } from "react";
 
 import { Suspense } from "react";
 
-
-
 import Bulk from "../../../components/Bulk";
 import Footer from "../../../components/Footer";
 import chair1 from "../../../assets/chair1.png";
@@ -16,8 +14,6 @@ import green from "../../../assets/green.png";
 import Header from "../../../common/Header";
 
 const Posture = () => {
-  
-
   //   Range
   const [rangeValue, setRangeValue] = useState(0);
   const minValue = 0; // Fixed minimum value
@@ -32,49 +28,43 @@ const Posture = () => {
     // Add logic here to sort your data based on the selected option
   };
 
- 
-
   const collections2 = [
     {
       discount: "-50%",
       image: chair1,
-      description:
-        "SmileSellers Hector High Back Multi-Purpose Gaming Chair, Mesh..",
+      description: "SmileSellers Hector High Back Multi-Purpose Gaming Chair, Mesh..",
       image2: star,
       rating: "2000",
       price: "Rs. 12999.00",
-      actualprice: "Rs. 12999.00",
+      actualprice: "Rs. 12999.00"
     },
     {
       discount: "-50%",
       image: chair1,
-      description:
-        "SmileSellers Hector High Back Multi-Purpose Gaming Chair, Mesh..",
+      description: "SmileSellers Hector High Back Multi-Purpose Gaming Chair, Mesh..",
       image2: star,
       rating: "2000",
       price: "Rs. 12999.00",
-      actualprice: "Rs. 12999.00",
+      actualprice: "Rs. 12999.00"
     },
     {
       discount: "-50%",
       image: chair1,
-      description:
-        "SmileSellers Hector High Back Multi-Purpose Gaming Chair, Mesh..",
+      description: "SmileSellers Hector High Back Multi-Purpose Gaming Chair, Mesh..",
       image2: star,
       rating: "2000",
       price: "Rs. 12999.00",
-      actualprice: "Rs. 12999.00",
+      actualprice: "Rs. 12999.00"
     },
     {
       discount: "-50%",
       image: chair1,
-      description:
-        "SmileSellers Hector High Back Multi-Purpose Gaming Chair, Mesh..",
+      description: "SmileSellers Hector High Back Multi-Purpose Gaming Chair, Mesh..",
       image2: star,
       rating: "2000",
       price: "Rs. 12999.00",
-      actualprice: "Rs. 12999.00",
-    },
+      actualprice: "Rs. 12999.00"
+    }
   ];
 
   return (
@@ -86,9 +76,7 @@ const Posture = () => {
           <h1 className="font-rubik text-home-bg-black">
             Home / <span className="text-text-light-gray">Posture</span>
           </h1>
-          <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">
-            Filter by Price
-          </h1>
+          <h1 className="mt-8 text-home-bg-black font-rubik text-[24px]">Filter by Price</h1>
           <input
             className="mt-4 "
             type="range"
@@ -158,9 +146,7 @@ const Posture = () => {
                       <span className="line-through text-sub-text-best  text-[10px]">
                         {collection.price}
                       </span>
-                      <span className="ml-2 text-black">
-                        {collection.actualprice}
-                      </span>
+                      <span className="ml-2 text-black">{collection.actualprice}</span>
                     </p>
                   </div>
                 </div>

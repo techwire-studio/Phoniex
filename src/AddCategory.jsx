@@ -4,7 +4,7 @@ import { createCategory, getCategories } from "./services/categoryService";
 const AddCategory = () => {
   const [categories, setCategories] = useState([]); // To store fetched categories
   const [formData, setFormData] = useState({
-    name: "",
+    name: ""
   });
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const AddCategory = () => {
     e.preventDefault();
     try {
       const newCategory = {
-        name: formData.name,
+        name: formData.name
       };
       await createCategory(newCategory); // Create new category
       setFormData({ name: "" }); // Reset the form

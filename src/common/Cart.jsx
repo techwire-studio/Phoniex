@@ -47,7 +47,7 @@
 //       fullName,
 //       phoneNumber,
 //     }
-  
+
 //     localStorage.setItem("formData", JSON.stringify(formData))
 //     alert("Your Address Saved")
 //   }
@@ -71,7 +71,7 @@
 //     <div>
 //       {/* Cart */}
 //       <AnimatePresence>
-        
+
 //           <motion.div
 //             initial={{ x: "100%", opacity: 0 }}
 //             animate={{ x: 0, opacity: 1 }}
@@ -204,7 +204,7 @@
 //               </div>
 //             </div>
 //           </motion.div>
-        
+
 //       </AnimatePresence>
 //       <AnimatePresence>
 //         {isCheckOut && (
@@ -572,15 +572,15 @@
 
 // export default Cart;
 
-import React from 'react'
+import React from "react";
 
 const Cart = () => {
   return (
-    <div > 
-        <h1 className='text-black'>Hello</h1>
-        <h1>Hello</h1>
+    <div>
+      <h1 className="text-black">Hello</h1>
+      <h1>Hello</h1>
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

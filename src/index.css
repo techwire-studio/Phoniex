@@ -1,3 +1,4 @@
-body, html {
-    overflow-x: hidden; /* Prevent horizontal scroll during animation */
-  }
+body,
+html {
+  overflow-x: hidden; /* Prevent horizontal scroll during animation */
+}

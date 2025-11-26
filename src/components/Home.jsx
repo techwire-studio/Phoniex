@@ -42,8 +42,8 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-white text-center mt-6 lg:mt-0 lg:text-left font-tomorrow text-subtext-mobile lg:text-subtext-desktop lg:pr-24"
           >
-            Experience unparalleled comfort and support designed for your
-            workday. Discover the style and ergonomics, crafted just for you!
+            Experience unparalleled comfort and support designed for your workday. Discover the
+            style and ergonomics, crafted just for you!
           </motion.p>
           <br />
           <br />

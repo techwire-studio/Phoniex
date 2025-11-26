@@ -7,20 +7,18 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { motion } from "framer-motion";
 import { CartContext } from "../context/CartContext";
-import stars from "../assets/Group 628218.png"
+import stars from "../assets/Group 628218.png";
 
 const NewArrivals = () => {
   const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
 
-   const { addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await fetch(
-          "http://localhost:5000/api/products/all-products?limit=8"
-        );
+        const res = await fetch("http://localhost:5000/api/products/all-products?limit=8");
         const data = await res.json();
 
         if (Array.isArray(data.products)) {
@@ -38,9 +36,6 @@ const NewArrivals = () => {
     fetchCollections();
   }, []);
 
-
-
-
   return (
     <div className="mt-20">
       <h1 className="text-center font-bold font-tomorrow lg:text-h1-desktop text-h1-mobile">
@@ -55,9 +50,7 @@ const NewArrivals = () => {
             const progressBar = document.getElementById("custom-progress-bar");
             swiper.on("slideChange", () => {
               const progress =
-                (swiper.activeIndex /
-                  (swiper.slides.length - swiper.params.slidesPerView)) *
-                100;
+                (swiper.activeIndex / (swiper.slides.length - swiper.params.slidesPerView)) * 100;
 
               progressBar.style.width = `${Math.min(progress, 100)}%`;
             });
@@ -65,12 +58,12 @@ const NewArrivals = () => {
           breakpoints={{
             1024: {
               slidesPerView: 4,
-              spaceBetween: 16,
+              spaceBetween: 16
             },
             0: {
               slidesPerView: 1.2,
-              spaceBetween: 32,
-            },
+              spaceBetween: 32
+            }
           }}
         >
           {loading ? (
@@ -94,19 +87,14 @@ const NewArrivals = () => {
                   <div className="flex justify-center">
                     <img
                       className="h-[250px] lg:h-[450px] object-contain"
-                      src={
-                        collection.imageUrls?.[0] ||
-                        "https://via.placeholder.com/300"
-                      }
+                      src={collection.imageUrls?.[0] || "https://via.placeholder.com/300"}
                       alt={collection.title}
                     />
                   </div>
 
                   {/* Details */}
                   <div className="flex flex-col mx-8 text-left pr-10 mt-2 lg:mt-4 font-rubik font-medium">
-                    <p className="text-body-mobile lg:text-body-desktop">
-                      {collection.title}
-                    </p>
+                    <p className="text-body-mobile lg:text-body-desktop">{collection.title}</p>
                     <p className="text-body-mobile lg:text-subtext-desktop">
                       {collection.description}
                     </p>
@@ -129,7 +117,6 @@ const NewArrivals = () => {
                         <span className="  text-h4-mobile lg:text-h4-mobile font-medium   text-black">
                           ₹{collection.price || "999"}
                         </span>
-                        
                       </p>
                     </div>
                   </div>
