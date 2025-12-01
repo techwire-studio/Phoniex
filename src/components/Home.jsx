@@ -1,9 +1,7 @@
 import React from "react";
 import home from "../assets/home-bg.webp";
-
 import { Suspense } from "react";
 import { motion } from "framer-motion";
-
 import Header from "../common/Header";
 
 const NewArrivals = React.lazy(() => import("./NewArrivals"));

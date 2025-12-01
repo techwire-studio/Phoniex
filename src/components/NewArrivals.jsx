@@ -1,19 +1,24 @@
-// import chair1 from "../assets/chair1.png";
-// import star from "../assets/start.png";
 import { useState, useEffect, useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { motion } from "framer-motion";
-import { CartContext } from "../context/CartContext";
 import stars from "../assets/Group 628218.png";
+import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const NewArrivals = () => {
   const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const { addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const navigateToCollection = (id) => navigate(`/product/${id}`);
+
+  const handleAddToCart = (collection) => {
+    addToCart({ ...collection, size: collection.variants[0].size });
+  };
 
   useEffect(() => {
     const fetchCollections = async () => {
@@ -76,6 +81,7 @@ const NewArrivals = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1 }}
                   viewport={{ once: true }}
+                  onClick={() => navigateToCollection(collection.id)}
                   className="flex flex-col justify-between w-full border-2 h-full py-4 pb-4"
                 >
                   {/* Tag */}
@@ -123,7 +129,15 @@ const NewArrivals = () => {
 
                   {/* Add to Cart - Fixed at bottom */}
                   <div className="mt-auto flex border-2 border-home-bg-black w-fit mx-auto px-16 lg:px-8 py-2 lg:py-4 text-home-bg-black font-medium">
-                    <button onClick={() => addToCart(collection)}>ADD TO CART</button>
+                    <button
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleAddToCart(collection);
+                      }}
+                    >
+                      {" "}
+                      ADD TO CART
+                    </button>
                   </div>
                 </motion.div>
               </SwiperSlide>

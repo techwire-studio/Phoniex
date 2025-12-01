@@ -115,7 +115,6 @@ const Under15K = () => {
 
   return (
     <div>
-      <ToastContainer theme="dark" />
       <Header />
       <div className=" w-full px-8 lg:px-16 h-fit flex flex-col lg:flex-row pt-10 lg:pt-20">
         <div className="hidden lg:block w-full lg:w-1/5 h-fit">

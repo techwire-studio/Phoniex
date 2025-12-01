@@ -1,9 +1,9 @@
 // SignUp.js
-import React, { Suspense, useState } from "react";
-import userService from "../services/userService";
+import React, { Suspense, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import AuthContext from "../context/AuthContext";
+import axios from "axios";
 
 const Header = React.lazy(() => import("../common/Header"));
 const Footer = React.lazy(() => import("../components/Footer"));
@@ -16,7 +16,7 @@ const SignUp = () => {
     phoneNumber: ""
   });
 
-  const { login } = useAuth();
+  const { login } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -27,8 +27,17 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await userService.signup(formData, login); // Pass login method from context
+      await axios.post("http://localhost:5000/api/clients/signup", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        phoneNumber: formData.phoneNumber
+      });
+
+      // Save user in global context
+      await login(formData.email, formData.password);
       navigate("/"); // Redirect to home or dashboard after successful signup and login
     } catch (err) {
       console.log(err);

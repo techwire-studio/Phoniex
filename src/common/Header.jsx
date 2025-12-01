@@ -31,6 +31,8 @@ import delivery from "../assets/delivery2.png";
 import add from "../assets/add.png";
 import { FixedSizeList as List } from "react-window";
 import { CartContext } from "../context/CartContext";
+import { use } from "react";
+import AuthContext from "../context/AuthContext";
 
 const Header = () => {
   const { cartItems, increaseQty, decreaseQty, removeFromCart } = useContext(CartContext);
@@ -67,7 +69,7 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  const userIsAuthenticated = true;
+  const { isLogin: userIsAuthenticated } = useContext(AuthContext);
 
   // Row rendering function for react-window
   const Row = ({ index, style }) => {
@@ -169,6 +171,7 @@ const Header = () => {
   // Save Address to local storage
   const handleAddressSave = () => {
     const formData = {
+      id: Date.now(),
       city,
       state,
       address,
@@ -965,7 +968,7 @@ const Header = () => {
                   }`}
                   disabled={!selectedAddress}
                   // onClick={handleProceedPayment}
-                  onClick={() => navigate("/payment")}
+                  onClick={() => navigate(`/payment?a=${selectedAddress.id}`)}
                 >
                   Proceed To Payment
                 </button>
@@ -1694,7 +1697,7 @@ const Header = () => {
             >
               <img className="w-6" src={search} alt="" />
             </a>
-            <a href="">
+            <a href="/profile">
               <img className="w-6" src={user} alt="" />
             </a>
             <button

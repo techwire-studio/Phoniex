@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  CreditCard,
-  ArrowLeft,
-  CheckCircle,
-  XCircle,
-  AlertCircle,
-  ShoppingBag
-} from "lucide-react";
+import { CreditCard, CheckCircle, XCircle, AlertCircle, ShoppingBag } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import back from "../assets/back.svg";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "../common/constant";
 
 const PaymentPage = () => {
   const { cartItems, calculateSubtotal, clearCart } = useCart();
+
+  const [searchParams] = useSearchParams();
+  const addressId = searchParams.get("a");
 
   const [paymentState, setPaymentState] = useState({
     isLoading: false,
@@ -21,28 +20,14 @@ const PaymentPage = () => {
     error: null
   });
 
-  // Function to clear cart from localStorage
-  const clearCartFromLocalStorage = () => {
-    try {
-      localStorage.removeItem("cart");
-      // Also clear any other cart-related localStorage items if they exist
-      localStorage.removeItem("cartItems");
-
-      // If your cart context has a clearCart function, call it too
-      if (clearCart && typeof clearCart === "function") {
-        clearCart();
-      }
-
-      console.log("Cart cleared from localStorage after successful payment");
-    } catch (error) {
-      console.error("Error clearing cart from localStorage:", error);
-    }
-  };
-
   const handleCreateOrder = async () => {
     if (cartItems.length === 0) return;
 
     setPaymentState((prev) => ({ ...prev, isLoading: true, error: null }));
+
+    const address = JSON.parse(localStorage.getItem("addresses")).find(
+      (addr) => addr.id === Number(addressId)
+    );
 
     try {
       const totalAmount = calculateSubtotal();
@@ -50,25 +35,29 @@ const PaymentPage = () => {
       // Create a product ID based on cart items
       const productId = `cart_${Date.now()}`;
 
-      const response = await fetch(`http://localhost:5000/api/payments/create-order`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("clientToken")}`
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        `${API_URL}/payments/create-order`,
+        JSON.stringify({
           amount: parseInt(totalAmount),
           product_id: productId,
+          shippingAddress: address,
           cart_items: cartItems.map((item) => ({
             id: item.id,
             title: item.title,
+            variantSize: item.size,
             quantity: item.quantity,
             price: item.price
           }))
-        })
-      });
+        }),
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
 
-      const data = await response.json();
+      const data = response.data;
 
       if (data.success) {
         setPaymentState((prev) => ({
@@ -78,7 +67,7 @@ const PaymentPage = () => {
         }));
 
         // Initialize Razorpay payment
-        initializeRazorpayPayment(data.order);
+        initializeRazorpayPayment(data.razorpayOrder);
       } else {
         throw new Error(data.message || "Failed to create order");
       }
@@ -118,8 +107,10 @@ const PaymentPage = () => {
   };
 
   const openRazorpayCheckout = (order) => {
+    console.log(order);
+
     const options = {
-      key: "rzp_test_yqlF5mfGkplM3F", // Replace with your Razorpay key
+      key: "rzp_test_RggcaVUZc2Tf0p", // Replace with your Razorpay key
       amount: order.amount,
       currency: order.currency || "INR",
       name: "PHEONIX",
@@ -159,21 +150,23 @@ const PaymentPage = () => {
     setPaymentState((prev) => ({ ...prev, isLoading: true }));
 
     try {
-      const response = await fetch(`http://localhost:5000/api/payments/verify-payment`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("clientToken")}`
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        `${API_URL}/payments/verify-payment`,
+        JSON.stringify({
           payment_id: paymentResponse.razorpay_payment_id,
           order_id: paymentResponse.razorpay_order_id,
           signature: paymentResponse.razorpay_signature,
           cart_items: cartItems
-        })
-      });
+        }),
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
 
-      const data = await response.json();
+      const data = response.data;
 
       setPaymentState((prev) => ({
         ...prev,
@@ -189,7 +182,7 @@ const PaymentPage = () => {
 
       // Clear cart from localStorage after successful payment
       if (data.success) {
-        clearCartFromLocalStorage();
+        clearCart();
       }
     } catch (error) {
       setPaymentState((prev) => ({
@@ -398,30 +391,6 @@ const PaymentPage = () => {
                       `Pay ₹${new Intl.NumberFormat("en-IN").format(calculateSubtotal())}`
                     )}
                   </button>
-                </div>
-              )}
-
-              {/* Testing Information */}
-              {process.env.NODE_ENV === "development" && (
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 shadow-lg">
-                  <h4 className="text-lg font-bold text-blue-900 mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    Test Payment Information
-                  </h4>
-                  <div className="bg-white rounded-xl p-4 text-sm text-blue-800 space-y-2">
-                    <div className="flex justify-between">
-                      <span className="font-medium">Test Card:</span>
-                      <span className="font-mono">4111 1111 1111 1111</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="font-medium">Expiry:</span>
-                      <span>Any future date</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="font-medium">CVV:</span>
-                      <span>Any 3 digits</span>
-                    </div>
-                  </div>
                 </div>
               )}
             </div>

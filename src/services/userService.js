@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
 
-const API_URL = "http://localhost:3000/api/users"; // Replace with your backend API URL
+const API_URL = "http://localhost:5000/api/clients"; // Replace with your backend API URL
 
 const signup = async (userData, login) => {
   try {

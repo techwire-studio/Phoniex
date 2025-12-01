@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const CartContext = createContext();
 
@@ -34,18 +35,24 @@ export const CartProvider = ({ children }) => {
     if (existing) {
       setCartItems((prev) =>
         prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === product.id ? { ...item, quantity: product.quantity || 1 } : item
         )
       );
     } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+      setCartItems([...cartItems, { ...product, quantity: product.quantity || 1 }]);
     }
+    toast.success("Product added to cart");
   };
 
   const increaseQty = (id) => {
     setCartItems((prev) =>
       prev.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item))
     );
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.setItem("cart", []);
   };
 
   const decreaseQty = (id) => {
@@ -74,6 +81,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         increaseQty,
         decreaseQty,
+        clearCart,
         removeFromCart,
         calculateSubtotal
       }}

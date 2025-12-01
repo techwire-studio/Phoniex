@@ -1,6 +1,6 @@
 import "./App.css";
 import { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import PaymentPage from "./Pages/PaymentPage.jsx";
 
 // Import Components
@@ -12,6 +12,7 @@ const Contact = lazy(() => import("./Pages/ContactUs.jsx"));
 const SignUp = lazy(() => import("./Auth/SignUp.jsx"));
 const Login = lazy(() => import("./Auth/Login.jsx"));
 const ProductDetail = lazy(() => import("./Pages/ProductDetail"));
+const Profile = lazy(() => import("./Pages/Profile.jsx"));
 // Collection
 const GamingProducts = lazy(() => import("./Pages/Collection/GamingProducts"));
 const BasicProducts = lazy(() => import("./Pages/Collection/BasicProducts.jsx"));
@@ -58,6 +59,7 @@ function App() {
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/add-category" element={<AddCategory />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/profile" element={<Profile />} />
         {/*Collections */}
         <Route path="/gaming-chairs" element={<GamingProducts />} />
         <Route path="/basic-chairs" element={<BasicProducts />} />
