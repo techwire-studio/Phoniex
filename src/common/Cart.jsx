@@ -227,7 +227,7 @@
 //                   alt=""
 //                 />
 //                 <p className="font-tomorrow font-bold text-h2-mobile lg:text-h2-desktop">
-//                   PHEONIX
+//                   Growmax
 //                 </p>
 //               </div>
 //               <div className="w-full mt-10 px-4 space-y-4">

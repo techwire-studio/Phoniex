@@ -67,7 +67,7 @@ const WhyChooseUs = () => {
           CONTACT US
         </p>
         <p className="w-4/5 text-center font-rubik font-light text-black text-subtext-mobile lg:text-subtext-desktop mt-4">
-          Need to contact us ? Just send us an e-mail at info@pheonix.com
+          Need to contact us ? Just send us an e-mail at info@growmax.com
         </p>
       </motion.div>
     </motion.div>

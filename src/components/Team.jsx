@@ -24,7 +24,7 @@ const Team = () => {
           <div className="flex gap-2 flex-col-reverse lg:flex-col">
             <img className="m-auto w-4 lg:w-8 lg:m-0" src={comma} alt="" /> <br />
             <p className=" m-auto lg:m-0 px-4  lg:px-0 w-full text-center lg:text-left lg:w-1/2 text-subtext-mobile lg:text-subtext-desktop  font-rubik font-light text-home-bg-black">
-              Pheonix is now selling directly to individuals, as well as working with Flipkart,
+              Growmax is now selling directly to individuals, as well as working with Flipkart,
               Bhive and other companies to outfit home offices for employees who may never work in
               an office five days a week again.
             </p>

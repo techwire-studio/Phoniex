@@ -113,7 +113,7 @@ const PaymentPage = () => {
       key: "rzp_test_RggcaVUZc2Tf0p", // Replace with your Razorpay key
       amount: order.amount,
       currency: order.currency || "INR",
-      name: "PHEONIX",
+      name: "Growmax",
       description: `Payment for ${cartItems.length} item(s)`,
       order_id: order.id,
       handler: function (response) {
@@ -240,7 +240,7 @@ const PaymentPage = () => {
               </Link>
               <div className="text-center">
                 <h1 className="font-tomorrow font-bold text-2xl lg:text-3xl text-gray-900">
-                  PHEONIX
+                  Growmax
                 </h1>
                 <p className="text-sm text-gray-500 mt-1">Secure Payment</p>
               </div>

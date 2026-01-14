@@ -533,7 +533,7 @@ const Header = () => {
                   src={back}
                   alt=""
                 />
-                <p className="font-tomorrow font-bold text-h2-mobile lg:text-h2-desktop">PHEONIX</p>
+                <p className="font-tomorrow font-bold text-h2-mobile lg:text-h2-desktop">Growmax</p>
               </div>
               <div className="w-full mt-10 px-4 space-y-4">
                 <div className="border border-black w-full">
@@ -990,7 +990,7 @@ const Header = () => {
           >
             <div className="w-full px-8 h-fit flex mt-10">
               <div className="w-2/3  h-full py-2 flex justify-start">
-                <p className="text-h4-mobile">Pheonix Ecommerce</p>
+                <p className="text-h4-mobile">Growmax Ecommerce</p>
               </div>
               <div className="w-1/3  h-full py-2 flex justify-end">
                 <img
@@ -1678,7 +1678,7 @@ const Header = () => {
         {/* ===========Div 2-2 ============ */}
         <div className="w-1/5  flex justify-center items-center ">
           <Link to="/">
-            <p className="font-tomorrow font-bold text-white text-[22px] py-8">PHEONIX</p>
+            <img className="w-36" src="/logo.png" />
           </Link>
         </div>
         {/* ===========Div 2-3 ============ */}
@@ -1740,7 +1740,7 @@ const Header = () => {
         </div>
         <div className="w-3/5  py-8 ">
           <Link to="/">
-            <p className="font-tomorrow font-bold text-white text-h2-mobile text-center">PHEONIX</p>
+            <p className="font-tomorrow font-bold text-white text-h2-mobile text-center">Growmax</p>
           </Link>
         </div>
         <div className="w-3/5 pr-4  flex justify-end items-center gap-4 py-8">
