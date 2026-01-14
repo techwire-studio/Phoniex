@@ -29,7 +29,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/clients/signup", {
+      await axios.post("https://tws-phoenix-inventory-backend.vercel.app/api/clients/signup", {
         name: formData.name,
         email: formData.email,
         password: formData.password,

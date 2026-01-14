@@ -20,7 +20,9 @@ const BestSellers = () => {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products/all-products?limit=6");
+        const res = await fetch(
+          "https://tws-phoenix-inventory-backend.vercel.app/api/products/all-products?limit=6"
+        );
         const data = await res.json();
 
         if (Array.isArray(data.products)) {
@@ -39,7 +41,9 @@ const BestSellers = () => {
   useEffect(() => {
     const fetchTopProduct = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products/all-products?limit=1");
+        const res = await fetch(
+          "https://tws-phoenix-inventory-backend.vercel.app/api/products/all-products?limit=1"
+        );
         const data = await res.json();
 
         if (Array.isArray(data.products) && data.products.length > 0) {

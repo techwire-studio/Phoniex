@@ -23,7 +23,9 @@ const NewArrivals = () => {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products/all-products?limit=8");
+        const res = await fetch(
+          "https://tws-phoenix-inventory-backend.vercel.app/api/products/all-products?limit=8"
+        );
         const data = await res.json();
 
         if (Array.isArray(data.products)) {

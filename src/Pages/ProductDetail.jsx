@@ -43,7 +43,9 @@ const ProductDetail = () => {
 
   useEffect(() => {
     const getResponse = async () => {
-      const response = await axios.get(`http://localhost:5000/api/products/${id}`);
+      const response = await axios.get(
+        `https://tws-phoenix-inventory-backend.vercel.app/api/products/${id}`
+      );
       setProductDetail(response.data);
     };
 

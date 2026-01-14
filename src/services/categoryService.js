@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // The base URL for your backend API
-const API_URL = "http://localhost:3000/api/categories";
+const API_URL = "https://tws-phoenix-inventory-backend.vercel.app/api/categories";
 
 // Function to get all categories
 export const getCategories = async () => {

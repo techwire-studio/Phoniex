@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
 
-const API_URL = "http://localhost:5000/api/clients"; // Replace with your backend API URL
+const API_URL = "https://tws-phoenix-inventory-backend.vercel.app/api/clients"; // Replace with your backend API URL
 
 const signup = async (userData, login) => {
   try {

@@ -25,9 +25,12 @@ const ExecutiveProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/products/all-products", {
-          params: { page: 1, limit: 100 } // Adjust limit as needed
-        });
+        const response = await axios.get(
+          "https://tws-phoenix-inventory-backend.vercel.app/api/products/all-products",
+          {
+            params: { page: 1, limit: 100 } // Adjust limit as needed
+          }
+        );
         const filteredProducts = response.data.products;
         setFilteredProducts(filteredProducts);
       } catch (error) {
