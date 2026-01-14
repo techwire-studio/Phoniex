@@ -533,7 +533,9 @@ const Header = () => {
                   src={back}
                   alt=""
                 />
-                <p className="font-tomorrow font-bold text-h2-mobile lg:text-h2-desktop">Growmax</p>
+                <Link to="/">
+                  <img className="bg-black w-36" src="/logo.png" />
+                </Link>{" "}
               </div>
               <div className="w-full mt-10 px-4 space-y-4">
                 <div className="border border-black w-full">
@@ -988,10 +990,10 @@ const Header = () => {
             transition={{ duration: 0.5 }}
             className="fixed inset-0 z-10 w-full h-screen bg-white"
           >
-            <div className="w-full px-8 h-fit flex mt-10">
-              <div className="w-2/3  h-full py-2 flex justify-start">
-                <p className="text-h4-mobile">Growmax Ecommerce</p>
-              </div>
+            <div className="w-full px-8 h-fit justify-between items-center flex mt-10">
+              <Link to="/">
+                <img className="bg-black w-36" src="/logo.png" />
+              </Link>
               <div className="w-1/3  h-full py-2 flex justify-end">
                 <img
                   className="w-6 cursor-pointer"
@@ -1738,11 +1740,9 @@ const Header = () => {
             />
           </a>
         </div>
-        <div className="w-3/5  py-8 ">
-          <Link to="/">
-            <p className="font-tomorrow font-bold text-white text-h2-mobile text-center">Growmax</p>
-          </Link>
-        </div>
+        <Link to="/">
+          <img className="w-36" src="/logo.png" />
+        </Link>
         <div className="w-3/5 pr-4  flex justify-end items-center gap-4 py-8">
           <a href="">
             <img className="w-6 h-6" src={search} alt="" />
